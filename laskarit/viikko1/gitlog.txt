@@ -1,3 +1,5 @@
+VIRHETEKSTI
+
 commit 8cac3946d2e9681de2843d1ffc31abf2cb6a6b5c
 Author: Roni <bibburi@hotmail.com>
 Date:   Sat Nov 2 13:31:13 2019 +0200
@@ -23,7 +25,7 @@ commit b4f55006e8a47c999b4ff056d47b745bdb7a4b1e
 Author: Roni <bibburi@hotmail.com>
 Date:   Sat Nov 2 13:20:05 2019 +0200
 
-    tekstin lis‰ys
+    tekstin lis√§ys
 
  eka.txt    | 3 ++-
  kolmas.txt | 1 +
@@ -69,7 +71,7 @@ commit 56291181526bac2e88d636e32715a53b25315ea5
 Author: Roni <bibburi@hotmail.com>
 Date:   Sat Nov 2 13:12:58 2019 +0200
 
-    muutos a lis‰ys
+    muutos a lis√§ys
 
  tiedosto.txt | 1 +
  toinen.txt   | 0
