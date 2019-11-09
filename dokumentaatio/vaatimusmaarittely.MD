@@ -19,7 +19,7 @@ Työnantaja
         - Työntekijälle ei voi liittää päällekkäisiä keikkoja.   
 
 Työntekijä   
-    - Voi kirjautua sisään ja ulos.
+    - Voi kirjautua sisään ja ulos.     
     - Voi nähdä tulevat ja menneet keikkansa.   
     - Voi kuitata keikkoja tehdyiksi.   
     - Voi täyttää keikkaraportteja, kun keikka tehty.   
