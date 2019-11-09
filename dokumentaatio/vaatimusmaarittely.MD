@@ -32,10 +32,10 @@ Asiakkaalla
 
 Vain kirjautumisikkuna, josta voi kirjautua. Ei pääsyä mihinkään ilman autentikaatiota. Ainoastaan työnantajakäyttäjä voi luoda uusia käyttäjiä (työntekijöitä).   
 
-Kirjautumisikkuna
-    => Login(käyttäjätunnus, salasana)
-    => Close program
-
+Kirjautumisikkuna    
+    => Login(käyttäjätunnus, salasana)   
+    => Close program   
+    
 ### Kirjautumisen jälkeen   
 
 Kirjauduttuaan näkymät perustuen autentikaatioon. 
