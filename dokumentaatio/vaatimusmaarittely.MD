@@ -35,6 +35,7 @@ Vain kirjautumisikkuna, josta voi kirjautua. Ei pääsyä mihinkään ilman aute
 Eri näkymät perustuen autentikaatioon. 
    
 Työnantajalla    
+
     Komento =>    
         Asiakas   
             => Lisää asiakas(nimi, osoite, puh, sahkoposti) => lisää asiakas tietokantaan, return void   
@@ -51,15 +52,16 @@ Työnantajalla
             => Hae keikat() => return list(keikka)   
             => Hae keikat(string) => hakee keikat, joissa jossain attribuutissa string (esim. työntekijän tai asiakkaan nimi), return list(keikka)      
             => Muokkaa keikkaa(id) => Hakee id:llä keikan. Jos keikka on olemassa, kysyy muutoksia, empty jättää muuttamatta, tallentaa tietokantaan, return void    
+            
 Työntekijällä   
+
     Komento =>   
         Hae keikat() => hakee työntekijän keikat, return list(keikka)   
         Hae keikat(string) => hakee keikat, joissa jossain attribuutissa string (esim. työntekijän tai asiakkaan nimi), return list(keikka);   
         Hae uudet keikat() => hakee työntekijän keikat, joita ei tehty, return list(keikka)   
         Hae vanhat keikat() => hakee työntekijän tehdyt keikat, return list(keikka)   
         Täytä keikkaraportti(id) => Hakee id:llä keikan. Jos keikka on olemassa, kysyy muutokset (keikkaraportti, alku, loppu), tallentaa muutokset tietokantaan.   
-   
-Työnantajakäyttäjällä laajempi määrä toiminnallisuuksia.   
+  
    
 ## Käyttöliittymäluonnos
 
