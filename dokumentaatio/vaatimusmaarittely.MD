@@ -7,7 +7,7 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Perusversion tarjoama toiminnallisuus
 
 Työnantaja    
-    - Voi kirjautua sisään ja ulos.
+    - Voi kirjautua sisään ja ulos.      
     - Voi lisätä asiakkaita   
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)   
     - Voi lisätä työntekijöitä   
