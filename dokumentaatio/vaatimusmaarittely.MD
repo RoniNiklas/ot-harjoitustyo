@@ -7,6 +7,7 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Perusversion tarjoama toiminnallisuus
 
 Työnantaja    
+    - Voi kirjautua sisään ja ulos.
     - Voi lisätä asiakkaita   
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)   
     - Voi lisätä työntekijöitä   
@@ -18,6 +19,7 @@ Työnantaja
         - Työntekijälle ei voi liittää päällekkäisiä keikkoja.   
 
 Työntekijä   
+    - Voi kirjautua sisään ja ulos.
     - Voi nähdä tulevat ja menneet keikkansa.   
     - Voi kuitata keikkoja tehdyiksi.   
     - Voi täyttää keikkaraportteja, kun keikka tehty.   
@@ -30,9 +32,13 @@ Asiakkaalla
 
 Vain kirjautumisikkuna, josta voi kirjautua. Ei pääsyä mihinkään ilman autentikaatiota. Ainoastaan työnantajakäyttäjä voi luoda uusia käyttäjiä (työntekijöitä).   
 
+Kirjautumisikkuna
+    => Login(käyttäjätunnus, salasana)
+    => Close program
+
 ### Kirjautumisen jälkeen   
 
-Eri näkymät perustuen autentikaatioon. 
+Kirjauduttuaan näkymät perustuen autentikaatioon. 
    
 Työnantajalla    
 
@@ -52,6 +58,8 @@ Työnantajalla
             => Hae keikat() => return list(keikka)   
             => Hae keikat(string) => hakee keikat, joissa jossain attribuutissa string (esim. työntekijän tai asiakkaan nimi), return list(keikka)      
             => Muokkaa keikkaa(id) => Hakee id:llä keikan. Jos keikka on olemassa, kysyy muutoksia, empty jättää muuttamatta, tallentaa tietokantaan, return void    
+        Logout
+            => kirjautuu ulos, return void.
             
 Työntekijällä   
 
@@ -61,6 +69,7 @@ Työntekijällä
         Hae uudet keikat() => hakee työntekijän keikat, joita ei tehty, return list(keikka)   
         Hae vanhat keikat() => hakee työntekijän tehdyt keikat, return list(keikka)   
         Täytä keikkaraportti(id) => Hakee id:llä keikan. Jos keikka on olemassa, kysyy muutokset (keikkaraportti, alku, loppu), tallentaa muutokset tietokantaan.   
+        Logout => kirjautuu ulos, return void.
   
    
 ## Käyttöliittymäluonnos
