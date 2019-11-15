@@ -13,8 +13,8 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 [Vaatimusmäärittely](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.MD)
 
 ## Releaset
-Viikko 3: LISÄÄ LINKKI
-    LISÄÄ DESCRIPTION MITÄ TOIMINNALLISUUKSIA
+[Viikko3](https://github.com/RoniNiklas/ot-harjoitustyo/tree/master/harjoitustyo/Harjoitustyo):
+    -tekstikäyttöliittymä, käyttäjän luonti, käyttäjän poisto, käyttäjän sisäänkirjautuminen, yksikkötestit käyttäjäluokalle, ja käyttäjänhallintaluokalle, jacoco testi.
 
 ## Komentorivi
 
