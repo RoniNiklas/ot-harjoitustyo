@@ -7,7 +7,7 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Perusversion tarjoama toiminnallisuus
 
 Työnantaja    
-    - Voi kirjautua sisään ja ulos.
+    - Voi kirjautua sisään ja ulos.      
     - Voi lisätä asiakkaita   
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)   
     - Voi lisätä työntekijöitä   
@@ -19,7 +19,7 @@ Työnantaja
         - Työntekijälle ei voi liittää päällekkäisiä keikkoja.   
 
 Työntekijä   
-    - Voi kirjautua sisään ja ulos.
+    - Voi kirjautua sisään ja ulos.     
     - Voi nähdä tulevat ja menneet keikkansa.   
     - Voi kuitata keikkoja tehdyiksi.   
     - Voi täyttää keikkaraportteja, kun keikka tehty.   
@@ -32,10 +32,10 @@ Asiakkaalla
 
 Vain kirjautumisikkuna, josta voi kirjautua. Ei pääsyä mihinkään ilman autentikaatiota. Ainoastaan työnantajakäyttäjä voi luoda uusia käyttäjiä (työntekijöitä).   
 
-Kirjautumisikkuna
-    => Login(käyttäjätunnus, salasana)
-    => Close program
-
+Kirjautumisikkuna    
+    => Login(käyttäjätunnus, salasana)   
+    => Close program   
+    
 ### Kirjautumisen jälkeen   
 
 Kirjauduttuaan näkymät perustuen autentikaatioon. 
