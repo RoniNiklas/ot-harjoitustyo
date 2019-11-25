@@ -11,17 +11,16 @@ import java.util.Scanner;
  *
  * @author Roni
  */
-public class TextInterface implements InterfaceDao {
+public class TextInterface {
 
     private Scanner scanner;
-    private UserManagerDao manager;
+    private AppUserManagerDao manager;
 
-    public TextInterface(Scanner scanner, UserManagerDao manager) {
+    public TextInterface(Scanner scanner, AppUserManagerDao manager) {
         this.scanner = scanner;
         this.manager = manager;
     }
 
-    @Override
     public void mainloop() {
         boolean shouldRun = true;
         while (shouldRun) {
@@ -54,7 +53,7 @@ public class TextInterface implements InterfaceDao {
         String username = scanner.nextLine();
         paddedOutput("Password: ");
         String password = scanner.nextLine();
-        User user = manager.getUser(username);
+       AppUser user = manager.getUser(username);
         if (user != null) {
             boolean success = manager.checkLogin(username, password);
             if (success) {

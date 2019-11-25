@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package harjoitustyo;
+package harjoitustyo.dao;
 
+import harjoitustyo.domain.AppUser;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -12,11 +13,15 @@ import java.util.Optional;
  *
  * @author Roni
  */
-public class UserManagerMemory implements UserManagerDao {
-    private ArrayList<User> users;
-    public UserManagerMemory() {
+public class AppUserManagerMemory implements AppUserManagerDao {
+
+    private ArrayList<AppUser> users;
+
+    public AppUserManagerMemory() {
         this.users = new ArrayList<>();
-    };
+    }
+
+    ;
     
     @Override
     public String toString() {
@@ -27,23 +32,23 @@ public class UserManagerMemory implements UserManagerDao {
         return returnable;
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<AppUser> getUsers() {
         return users;
     }
 
     @Override
-    public void add(User user) {
+    public void add(AppUser user) {
         this.users.add(user);
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(AppUser user) {
         this.users.remove(user);
     }
 
     @Override
-    public User getUser(String username) {
-        Optional<User> returnable = users.stream().parallel().filter(user -> user.getUsername().equals(username)).findAny();
+    public AppUser getUser(String username) {
+        Optional<AppUser> returnable = users.stream().parallel().filter(user -> user.getUsername().equals(username)).findAny();
         if (returnable.isPresent()) {
             return returnable.get();
         } else {
@@ -53,9 +58,9 @@ public class UserManagerMemory implements UserManagerDao {
 
     @Override
     public boolean checkLogin(String username, String password) {
-        Optional<User> returnable = users.stream().parallel().filter(user -> user.getUsername().equals(username)).findAny();
+        Optional<AppUser> returnable = users.stream().parallel().filter(user -> user.getUsername().equals(username)).findAny();
         if (returnable.isPresent()) {
-            User user = returnable.get();
+            AppUser user = returnable.get();
             if (user.getPassword().equals(password)) {
                 return true;
             }

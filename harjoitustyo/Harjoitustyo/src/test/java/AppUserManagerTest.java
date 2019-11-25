@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import harjoitustyo.dao.AppUserManagerMemory;
+import harjoitustyo.domain.AppUser;
 import harjoitustyo.*;
 import java.util.ArrayList;
 import org.junit.After;
@@ -15,14 +17,14 @@ import static org.junit.Assert.*;
  *
  * @author Roni
  */
-public class UserTest {
+public class AppUserManagerTest {
 
-    private UserManagerMemory manager;
+    private AppUserManagerMemory manager;
     
     @Before
     public void setUp() {
-        manager = new UserManagerMemory();
-        User user = new User("name", "password", "authorization");
+        manager = new AppUserManagerMemory();
+        AppUser user = new AppUser("name", "password", "authorization");
         manager.add(user);
     }
 
@@ -42,7 +44,7 @@ public class UserTest {
     }
     @Test
     public void canRemoveUsers(){
-        User user = manager.getUser("name");
+       AppUser user = manager.getUser("name");
         manager.remove(user);
         assertEquals(0, manager.getUsers().size());
     }

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package harjoitustyo;
+package harjoitustyo.domain;
 
+import harjoitustyo.domain.Client;
+import harjoitustyo.domain.Employee;
 import java.time.LocalDateTime;
 
 /**
@@ -12,21 +14,21 @@ import java.time.LocalDateTime;
  * @author Roni
  */
 public class Assignment {
-    private Customer customer;
+    private Client client;
     private Employee employee;
     private LocalDateTime start;
     private LocalDateTime end;
     private String description;
     private String report;
-    private boolean done;
+    private boolean completed;
 
-    public Assignment(Customer customer, Employee employee, LocalDateTime start, LocalDateTime end, String description, String report, boolean done) {
-        this.customer = customer;
+    public Assignment(Client client, Employee employee, LocalDateTime start, LocalDateTime end, String description, String report, boolean completed) {
+        this.client = client;
         this.employee = employee;
         this.start = start;
         this.end = end;
         this.description = description;
         this.report = report;
-        this.done = done;
+        this.completed = completed;
     }
 }

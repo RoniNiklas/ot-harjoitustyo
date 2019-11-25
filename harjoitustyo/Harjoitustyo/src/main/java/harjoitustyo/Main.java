@@ -1,21 +1,23 @@
 package harjoitustyo;
-import java.util.Scanner;
+
+import harjoitustyo.presentation.Ui;
+import javafx.application.Application;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  *
  * @author Roni
  */
+@SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan
 public class Main {
     public static void main(String[] args) {
-        User admin = new User ("Admin", "Password", "Admin");
-        User regular = new User ("Employee", "Password", "Employee");
-        UserManagerDao usermanager = new UserManagerMemory();
-        System.out.println(admin);
-        System.out.println(regular);
-        usermanager.add(admin);
-        usermanager.add(regular);
-        Scanner scanner = new Scanner(System.in);
-        InterfaceDao textInterface = new TextInterface(scanner, usermanager);
-        textInterface.mainloop();
+        //SpringApplication.run(Main.class, args);
+        Ui ui = new Ui();
+        ui.main(args);
     }
 }

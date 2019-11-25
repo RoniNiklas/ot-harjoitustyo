@@ -3,23 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package harjoitustyo;
+package harjoitustyo.domain;
 
 /**
  *
  * @author Roni
  */
-public class User {
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+@Entity
+public class AppUser extends AbstractPersistable<Long> {
+    @Id
+    private Long id;
     private String username;
     private String password;
     private String authorization;
-    public User(String un, String pw, String auth) {
+    public AppUser(String un, String pw, String auth) {
         this.password = pw;
         this.username = un;
         this.authorization = auth;
     }
-    @Override
-    public String toString(){
+
+    public AppUser() {
+    }
+    
+    public String toString() {
         return "User: " + username + " has authorization: " + authorization;
     }
 

@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package harjoitustyo;
+package harjoitustyo.domain;
 
 /**
  *
  * @author Roni
  */
-public class Customer {
+public class Client {
     private String name;
     private String number;
     private String address;
     private String email;
 
-    public Customer() {
+    public Client() {
     }
 
-    public Customer(String name, String number, String address, String email) {
+    public Client(String name, String number, String address, String email) {
         this.name = name;
         this.number = number;
         this.address = address;
