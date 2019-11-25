@@ -11,6 +11,7 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Työn dokumentaatio:     
 [Työaikakirjanpito](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.MD)      
 [Vaatimusmäärittely](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.MD)
+[Arkkitehtuuri](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ## Releaset
 [Viikko3](https://github.com/RoniNiklas/ot-harjoitustyo/tree/master/harjoitustyo/Harjoitustyo):
