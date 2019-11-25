@@ -1,29 +1,17 @@
-# Vaatimusmäärittely
 
-## Sovelluksen tarkoitus
-
-Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja, koska satuin näkemään joskus yhden yrityksen pyynnön, että joku jonkun tälläisen heille tuottaisi. Paljon vastaavia on jo olemassa, mutta en nyt keksi muutakaan tekemistä.
-
-## Perusversion tarjoama toiminnallisuus
-
-Työnantaja    
-    - Voi kirjautua sisään ja ulos. **TEHTY**, ei db
-    - Voi lisätä työntekijöitä   **KÄYTTÖLIITTYMÄ TEHTY**, paitsi että ei tee työntekijälle käyttäjää, db ei
-        - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string), käyttäjätunnus(string), salasana(string)   
-    - Voi selailla työntekijöitä   **KÄYTTÖLIITTYMÄ TEHTY**, db ei
-    - Voi muuttaa työntekijöiden tietoja **KÄYTTÖLIITTYMÄ TEHTY**, db ei
-    - Voi poistaa työntekijöitä **KÄYTTÖLIITTYMÄ TEHTY**, db ei
-    - Voi lisätä keikkoja   
-        - Attribuutteina id (pk), asiakas (fk), työntekijä (fk), keikan kuvaus (string), keikka tehty/eitehty (boolean), keikkaraportti (luodaan keikan jälkeen)(string), keikan alku (date), keikan loppu (date).   
+Työnantaja      
     - Voi lisätä asiakkaita   
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)   
+    - Voi lisätä työntekijöitä   
+        - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string), käyttäjätunnus(string), salasana(string)   
+    - Voi lisätä keikkoja   
+        - Attribuutteina id (pk), asiakas (fk), työntekijä (fk), keikan kuvaus (string), keikka tehty/eitehty (boolean), keikkaraportti (luodaan keikan jälkeen)(string), keikan alku (date), keikan loppu (date).   
     - Voi liittää asiakkaita keikkoihin   
     - Voi liittää työntekijöitä keikkoihin   
         - Työntekijälle ei voi liittää päällekkäisiä keikkoja.   
 
-
 Työntekijä   
-    - Voi kirjautua sisään ja ulos.    **TEHTY**, ei db
+    - Voi kirjautua sisään ja ulos.    XXXXXXXXXXXXXXXX  
     - Voi nähdä tulevat ja menneet keikkansa.   
     - Voi kuitata keikkoja tehdyiksi.   
     - Voi täyttää keikkaraportteja, kun keikka tehty.   
