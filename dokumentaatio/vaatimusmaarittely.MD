@@ -7,12 +7,12 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Perusversion tarjoama toiminnallisuus
 
 Työnantaja    
-    - Voi kirjautua sisään ja ulos. **TEHTY**, ei db
-    - Voi lisätä työntekijöitä   **KÄYTTÖLIITTYMÄ TEHTY**, paitsi että ei tee työntekijälle käyttäjää, db ei
+    - Voi kirjautua sisään ja ulos. **TEHTY**, ei db   
+    - Voi lisätä työntekijöitä   **KÄYTTÖLIITTYMÄ TEHTY**, paitsi että ei tee työntekijälle käyttäjää, db ei    
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string), käyttäjätunnus(string), salasana(string)   
-    - Voi selailla työntekijöitä   **KÄYTTÖLIITTYMÄ TEHTY**, db ei
-    - Voi muuttaa työntekijöiden tietoja **KÄYTTÖLIITTYMÄ TEHTY**, db ei
-    - Voi poistaa työntekijöitä **KÄYTTÖLIITTYMÄ TEHTY**, db ei
+    - Voi selailla työntekijöitä   **KÄYTTÖLIITTYMÄ TEHTY**, db ei   
+    - Voi muuttaa työntekijöiden tietoja **KÄYTTÖLIITTYMÄ TEHTY**, db ei   
+    - Voi poistaa työntekijöitä **KÄYTTÖLIITTYMÄ TEHTY**, db ei   
     - Voi lisätä keikkoja   
         - Attribuutteina id (pk), asiakas (fk), työntekijä (fk), keikan kuvaus (string), keikka tehty/eitehty (boolean), keikkaraportti (luodaan keikan jälkeen)(string), keikan alku (date), keikan loppu (date).   
     - Voi lisätä asiakkaita   
@@ -23,7 +23,7 @@ Työnantaja
 
 
 Työntekijä   
-    - Voi kirjautua sisään ja ulos.    **TEHTY**, ei db
+    - Voi kirjautua sisään ja ulos.    **TEHTY**, ei db    
     - Voi nähdä tulevat ja menneet keikkansa.   
     - Voi kuitata keikkoja tehdyiksi.   
     - Voi täyttää keikkaraportteja, kun keikka tehty.   
