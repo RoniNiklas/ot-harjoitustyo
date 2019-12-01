@@ -68,4 +68,9 @@ public class ClientManagerMemory implements ClientManagerDao {
         return clients.parallelStream().anyMatch(client -> client.getIdNumber().equals(idNumber));
     }
 
+    @Override
+    public void remove(String idNumber) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

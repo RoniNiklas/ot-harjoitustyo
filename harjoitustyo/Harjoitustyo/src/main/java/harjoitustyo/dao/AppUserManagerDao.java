@@ -7,11 +7,13 @@ package harjoitustyo.dao;
 
 import harjoitustyo.domain.AppUser;
 import java.util.ArrayList;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Roni
  */
+@Service
 public interface AppUserManagerDao {
     @Override
     String toString();

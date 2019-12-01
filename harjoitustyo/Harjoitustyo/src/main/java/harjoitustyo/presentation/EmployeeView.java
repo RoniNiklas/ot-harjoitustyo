@@ -62,6 +62,8 @@ public class EmployeeView {
         emailCol.setMinWidth(200);
         TableColumn numberCol = new TableColumn("Number");
         numberCol.setMinWidth(100);
+        TableColumn addressCol = new TableColumn("Address");
+        addressCol.setMinWidth(200);
         TableColumn idNumberCol = new TableColumn("ID Number");
         idNumberCol.setMinWidth(100);
         firstnameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstname"));
@@ -101,8 +103,16 @@ public class EmployeeView {
                         t.getTablePosition().getRow())).setNumber(t.getNewValue());
             }
         });
+        addressCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("address"));
+        addressCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        addressCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
+                ((Employee) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())).setAddress(t.getNewValue());
+            }
+        });
         idNumberCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("idNumber"));
-        table.getColumns().addAll(firstnameCol, lastnameCol, emailCol, numberCol, idNumberCol);
         idNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
         idNumberCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
             @Override
@@ -116,6 +126,7 @@ public class EmployeeView {
                 }
             }
         });
+        table.getColumns().addAll(firstnameCol, lastnameCol, emailCol, numberCol, addressCol, idNumberCol);
         table.setItems(employees);
         return table;
     }
@@ -156,9 +167,10 @@ public class EmployeeView {
         TextField lnameField = new TextField("Last name");
         TextField emailField = new TextField("Email");
         TextField numberField = new TextField("Phone number");
+        TextField addressField = new TextField("Address");
         TextField idNumberField = new TextField("National id number");
         Button submitButton = new Button("Add Employee");
-        addEmployeeBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, idNumberField, submitButton);
+        addEmployeeBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, addressField, idNumberField, submitButton);
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -169,6 +181,7 @@ public class EmployeeView {
                     employee.setLastname(lnameField.getText());
                     employee.setIdNumber(idNumberField.getText());
                     employee.setNumber(numberField.getText());
+                    employee.setAddress(addressField.getText());
                     employeeManager.add(employee);
                     createEmployeeView();
                 } else {
@@ -192,9 +205,8 @@ public class EmployeeView {
             public void handle(ActionEvent e) {
                 String idNumber = removeEmployeeTextField.getText();
                 if (employeeManager.contains(idNumber)) {
-                    Employee employee = employeeManager.getEmployee(idNumber);
-                    employees.remove(employee);
-                    employeeManager.remove(employee);
+                    System.out.println("Contains!");
+                    employeeManager.remove(idNumber);
                 } else {
                     errorField.setText("No employee with that ID exists.");
                 }

@@ -7,18 +7,16 @@ package harjoitustyo.domain;
 
 import java.util.ArrayList;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Client extends AbstractPersistable<Long> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     private String firstname;
     private String fullname;

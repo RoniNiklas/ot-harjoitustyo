@@ -5,12 +5,9 @@
  */
 package harjoitustyo.dao;
 
-import harjoitustyo.dao.EmployeeManagerDao;
 import harjoitustyo.domain.Employee;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.stream.Collector;
-import static java.util.stream.Collectors.toList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -61,6 +58,11 @@ public class EmployeeManagerMemory implements EmployeeManagerDao {
     @Override
     public boolean contains(String idNumber) {
         return employees.parallelStream().anyMatch(employee -> employee.getIdNumber().equals(idNumber));
+    }
+
+    @Override
+    public void remove(String idNumber) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

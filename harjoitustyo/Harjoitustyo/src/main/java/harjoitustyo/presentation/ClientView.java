@@ -103,7 +103,7 @@ public class ClientView {
                         t.getTablePosition().getRow())).setNumber(t.getNewValue());
             }
         });
-        addressCol.setCellValueFactory(new PropertyValueFactory<Client, String>("number"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<Client, String>("address"));
         addressCol.setCellFactory(TextFieldTableCell.forTableColumn());
         addressCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
             @Override
@@ -206,9 +206,7 @@ public class ClientView {
             public void handle(ActionEvent e) {
                 String idNumber = removeClientTextField.getText();
                 if (clientManager.contains(idNumber)) {
-                    Client client = clientManager.getClient(idNumber);
-                    clients.remove(client);
-                    clientManager.remove(client);
+                    clientManager.remove(idNumber);
                 } else {
                     errorField.setText("No client with that ID exists.");
                 }

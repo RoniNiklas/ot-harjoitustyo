@@ -23,5 +23,5 @@ public interface ClientManagerDao {
     ObservableList<Client> getObservableClients(String filter);
 
     void remove(Client client);
-    
+    void remove(String idNumber);
 }

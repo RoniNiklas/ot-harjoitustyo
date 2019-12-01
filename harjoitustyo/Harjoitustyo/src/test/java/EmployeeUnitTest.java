@@ -26,7 +26,7 @@ public class EmployeeUnitTest {
 
     @Test
     public void EmployeeCanBeCreatedFullConstructor() {
-        Employee employee = new Employee("Make", "Makenen", "555-666-777", "email@email.com", new ArrayList<>(), "111");
+        Employee employee = new Employee("Make", "Makenen", "555-666-777", "email@email.com", new ArrayList<>(), "111", "kotitie 1a");
         assertNotNull(employee);
         assertEquals(employee.getFirstname(), "Make");
         assertEquals(employee.getLastname(), "Makenen");
@@ -34,6 +34,7 @@ public class EmployeeUnitTest {
         assertEquals(employee.getEmail(), "email@email.com");
         assertEquals(employee.getIdNumber(), "111");
         assertEquals(employee.getAssignments().size(), 0);
+        assertEquals(employee.getAddress(), "kotitie 1a");
     }
 
     @Test
@@ -45,6 +46,7 @@ public class EmployeeUnitTest {
         employee.setNumber("555-666-777");
         employee.setIdNumber("111");
         employee.setAssignments(new ArrayList<>());
+        employee.setAddress("kotitie 1a");
         assertEquals(employee.getFirstname(), "Make");
         assertEquals(employee.getLastname(), "Makenen");
         assertEquals(employee.getNumber(), "555-666-777");
@@ -52,5 +54,6 @@ public class EmployeeUnitTest {
         assertEquals(employee.getIdNumber(), "111");
         assertEquals(employee.getAssignments().size(), 0);
         assertEquals(employee.getFullname(), "Make Makenen");
+        assertEquals(employee.getAddress(), "kotitie 1a");
     }
 }

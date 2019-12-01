@@ -20,8 +20,6 @@ public class AppUserManagerMemory implements AppUserManagerDao {
     public AppUserManagerMemory() {
         this.users = new ArrayList<>();
     }
-
-    ;
     
     @Override
     public String toString() {

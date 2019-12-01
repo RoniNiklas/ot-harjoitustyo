@@ -16,6 +16,7 @@ public interface EmployeeManagerDao {
     boolean contains(String idNumber);
     void add(Employee employee);
     void remove(Employee employee);
+    void remove(String idNumber);
     Employee getEmployee(String idNumber);
     ObservableList<Employee> getObservableEmployees(String filter);
     

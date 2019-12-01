@@ -72,6 +72,9 @@
                 <configuration>
                     <excludes>
                         <exclude>harjoitustyo/presentation/**</exclude>
+                        <exclude>harjoitustyo/dao/ClientManagerMemory.class</exclude>
+                        <exclude>harjoitustyo/dao/EmployeeManagerMemory.class</exclude>
+                        <exclude>harjoitustyo/dao/AppUserManagerMemory.class</exclude>
                     </excludes>
                 </configuration>  
             </plugin>
