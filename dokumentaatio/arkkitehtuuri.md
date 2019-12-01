@@ -8,6 +8,6 @@ Alla sekvenssikaavio adminin kirjautumiselle muistipohjaisessa versiossa sovellu
 
 Käyttöliittymästä vastaa Main ja harjoitustyo.presentation pakkauksen oliot (tällä hetkellä Ui ja Ui.EmployeeView). Main olio toimii pohjana, jonka päälle luodaan erillisiä olioita ihan vain luokkien koodin selattavuutta helpottamaan. Nimentä tulee muuttumaan, sillä tällä hetkellä EmployeeView - luokan olio vastaa siitä työnantajan näkymästä, missä työntekijöitä voi selata, ja nimentä ei välttämättä kaikista selkein.
 
-Sovelluslogiikasta vastaa harjoitustyo.dao pakkauksen interfacet appUserManagerDao, employeeManagerDao ja ClientManagerDao.
+Sovelluslogiikasta vastaa harjoitustyo.dao pakkauksen interfacet appUserManagerDao, employeeManagerDao ja ClientManagerDao sekä näitä toteuttavat luokat
 
 Tietokannasta vastaa harjoitustyo.repository luokan oliot.
