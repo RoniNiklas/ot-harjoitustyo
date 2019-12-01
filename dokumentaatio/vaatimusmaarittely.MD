@@ -34,7 +34,7 @@ Työntekijä
 ## Jatkokehitysideoita
 
 Työntekijä voi muokata omia tietojaan.   
-Jokin palvelin systeemi, että ohjelmaa voisi oikeasti käyttää oikeassa elämässä. Tällä hetkellä työnantaja ja käyttäjät joutuisivat olemaan samalla kokeella, että käyttävät samaa db:tä :D   
+Jokin palvelin systeemi, että ohjelmaa voisi oikeasti käyttää oikeassa elämässä. Tällä hetkellä työnantaja ja käyttäjät joutuisivat olemaan samalla koneella, että käyttävät samaa db:tä :D   
 Työntekijälle kanssa palkkatiedot (tehdyt tunnit, tuntipalkka, veroprosentti) ja palkanlaskennan liittäminen sovellukseen.   
 Asiakkaalle mahdollisuus antaa kommentteja keikasta(?)   
 
