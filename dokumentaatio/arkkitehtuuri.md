@@ -2,9 +2,12 @@ Sovelluksen datan muodostavat harjoitustyo.domain pakkauksen luokat User, Employ
 
 [Luokkakaavio](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/Luokkakaavio.jpg)
 
+Alla sekvenssikaavio adminin kirjautumiselle muistipohjaisessa versiossa sovelluksesta.  
+
 [Sekvenssikaavio adminin sisään kirjautumiselle](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/sekvenssikaavio.png)
 
-Käyttöliittymästä vastaa harjoitustyo.presentation pakkauksen oliot (tällä hetkellä Ui ja Ui.EmployeeView). Ui-luokan olio toimii pohjana, jonka päälle luodaan erillisiä olioita ihan vain luokkien koodin selattavuutta helpottamaan. Nimentä tulee muuttumaan, sillä tällä hetkellä Ui.EmployeeView - luokan olio vastaa siitä työnantajan näkymästä, missä työntekijöitä voi selata, ja nimentä ei välttämättä kaikista selkein.
+Käyttöliittymästä vastaa Main ja harjoitustyo.presentation pakkauksen oliot (tällä hetkellä Ui ja Ui.EmployeeView). Main olio toimii pohjana, jonka päälle luodaan erillisiä olioita ihan vain luokkien koodin selattavuutta helpottamaan. Nimentä tulee muuttumaan, sillä tällä hetkellä EmployeeView - luokan olio vastaa siitä työnantajan näkymästä, missä työntekijöitä voi selata, ja nimentä ei välttämättä kaikista selkein.
 
-Sovelluslogiikasta vastaa harjoitustyo.dao pakkauksen oliot (tällä hetkellä AppUserManagerDao ja EmployeeManagerDao). Tämän pakkauksen oliot vastaavat käyttöliittymän tarvitseman datan käsittelystä; tallentamisesta, hakemisesta, muokkaamisesta ja poistamisesta. Tällä sovelluksella on vain muistiin tallettavia olioita AppUserManagerMemory ja EmployeeManagerMemory. Jatkossa olisi toivomus, että saisin jonkinlaisen persistentin databasen käyttöön, mutta en onnistunut saamaan springin jparepoja toimimaan ilman, että pyörittäisin palvelinta, ja db:n käsittely localhostiin tehtävillä http posteilla ja geteillä tuntui kömpelöltä, niin en siihen enempää vielä syventynyt.
+Sovelluslogiikasta vastaa harjoitustyo.dao pakkauksen interfacet appUserManagerDao, employeeManagerDao ja ClientManagerDao.
 
+Tietokannasta vastaa harjoitustyo.repository luokan oliot.
