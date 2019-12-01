@@ -5,13 +5,8 @@
  */
 package harjoitustyo.presentation;
 
-import harjoitustyo.domain.AppUser;
-import harjoitustyo.dao.AppUserManagerDao;
-import harjoitustyo.dao.AppUserManagerMemory;
-import harjoitustyo.domain.Employee;
-import harjoitustyo.dao.EmployeeManagerDao;
-import harjoitustyo.dao.EmployeeManagerMemory;
-import harjoitustyo.presentation.EmployeeView;
+import harjoitustyo.domain.*;
+import harjoitustyo.dao.*;
 import java.util.ArrayList;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -49,6 +44,8 @@ public class Ui extends Application {
 
     private AppUserManagerDao userManager;
     private EmployeeManagerDao employeeManager;
+    private ClientManagerDao clientManager;
+    private Text errorField;
     private BorderPane root;
     private Scene scene;
     private AppUser user;
@@ -66,10 +63,11 @@ public class Ui extends Application {
         userManager.add(admin);
         userManager.add(regular);
         employeeManager = new EmployeeManagerMemory();
+        clientManager = new ClientManagerMemory();
         // tää outo tuplaroolitus ei tule toimimaan. fixaa.
         employeeManager.add(new Employee("make", "makenen", "050555666777", "make@makenen.com", new ArrayList<>(), "112233-0553"));
         userManager.add(new AppUser("make", "Password", "Employee"));
-
+        errorField = new Text("");
         // Graphics
         // Create the root
         root = new BorderPane();
@@ -79,17 +77,19 @@ public class Ui extends Application {
         createLoginView();
 
         // create the scene
-        scene = new Scene(root, 1000, 1000);
+        scene = new Scene(root, 1200, 1000);
         primaryStage.setTitle("Employee Management App");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    private void removeAllViews() {
+        root.getChildren().clear();
+    }
+
     private void createLoginView() {
         HBox hbox = new HBox();
-        hbox.setPadding(new Insets(10, 5, 5, 5));  // top, right, bottom, left
         hbox.setSpacing(10);
-        Text errorField = new Text("");
         Button loginBtn = new Button("Login");
         loginBtn.setDefaultButton(true);
         TextField nameField = new TextField();
@@ -104,7 +104,7 @@ public class Ui extends Application {
             public void handle(ActionEvent e) {
                 if (userManager.checkLogin(nameField.getText(), pwField.getText())) {
                     errorField.setText("Successful login");
-                    root.getChildren().remove(hbox);
+                    removeLoginView();
                     createLogoutView();
                     user = userManager.getUser(nameField.getText());
                     if (user.getAuthorization().equals("Admin")) {
@@ -115,28 +115,44 @@ public class Ui extends Application {
                 }
             }
         });
+        replaceTextAfterSleep(errorField, "", 3000);
+    }
+
+    private void removeLoginView() {
+        root.getChildren().remove(root.getTop());
+    }
+
+    private void replaceTextAfterSleep(Text text, String input, int duration) {
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(duration);
+                    text.setText(input);
+                } catch (InterruptedException e) {
+                    System.out.println("INTERRUPTED");
+                }
+            }
+        };
+        thread.start();
     }
 
     private void createLogoutView() {
         HBox hbox = new HBox();
-        hbox.setPadding(new Insets(10, 5, 20, 5));  // top, right, bottom, left
         hbox.setSpacing(10);
-        Text errorField = new Text("");
+        hbox.setPadding(new Insets(10, 0, 10, 0));  // top, right, bottom, left
         Button logoutBtn = new Button("Logout");
-        hbox.getChildren().add(errorField);
-        hbox.getChildren().add(logoutBtn);
+        hbox.getChildren().addAll(logoutBtn, errorField);
         root.setTop(hbox);
-        scene.setRoot(root);
         logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 errorField.setText("Successful logout");
                 user = null;
-                root.getChildren().remove(hbox);
-                root.getChildren().clear();
+                removeAllViews();
                 createLoginView();
             }
         });
+        replaceTextAfterSleep(errorField, "", 3000);
     }
 
     private void createAdminView() {
@@ -144,25 +160,24 @@ public class Ui extends Application {
         vbox.setPadding(new Insets(10, 5, 5, 5));  // top, right, bottom, left
         vbox.setSpacing(10);
         Button openEmployeeView = new Button("Employees");
-        Button openCustomerView = new Button("Customers");
+        Button openClientView = new Button("Client");
         Button openAssignmentView = new Button("Assignments");
-        vbox.getChildren().add(openEmployeeView);
-        vbox.getChildren().add(openCustomerView);
-        vbox.getChildren().add(openAssignmentView);
+        vbox.getChildren().addAll(openEmployeeView, openClientView, openAssignmentView);
         root.setLeft(vbox);
         openEmployeeView.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 root.getChildren().remove(root.getCenter());
                 EmployeeView employeeView = new EmployeeView(root, employeeManager);
-                employeeView.createEmployeeView();                       
+                employeeView.createEmployeeView();
             }
         });
-        openCustomerView.setOnAction(new EventHandler<ActionEvent>() {
+        openClientView.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 root.getChildren().remove(root.getCenter());
-                createCustomerView();
+                ClientView clientView = new ClientView(root, clientManager);
+                clientView.createClientView();
             }
         });
         openAssignmentView.setOnAction(new EventHandler<ActionEvent>() {
@@ -172,11 +187,6 @@ public class Ui extends Application {
                 createAssignmentView();
             }
         });
-    }
-
-
-    private void createCustomerView() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void createAssignmentView() {

@@ -41,13 +41,13 @@ public class EmployeeManagerMemory implements EmployeeManagerDao {
     @Override
     public void add(Employee employee) {
         this.employees.add(employee);
-
     }
 
     @Override
     public void remove(Employee employee) {
         this.employees.remove(employee);
     }
+
     @Override
     public Employee getEmployee(String idNumber) {
         Optional<Employee> returnable = employees.parallelStream().filter(employee -> employee.getIdNumber().equals(idNumber)).findFirst();
@@ -57,6 +57,7 @@ public class EmployeeManagerMemory implements EmployeeManagerDao {
             throw new IllegalArgumentException("jostain syystä löytää id: " + idNumber + " containssilla, mutta ei getEmployeella");
         }
     }
+
     @Override
     public boolean contains(String idNumber) {
         return employees.parallelStream().anyMatch(employee -> employee.getIdNumber().equals(idNumber));

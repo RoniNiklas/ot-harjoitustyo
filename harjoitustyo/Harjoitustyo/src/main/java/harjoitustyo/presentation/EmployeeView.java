@@ -52,7 +52,7 @@ public class EmployeeView {
         vbox.getChildren().addAll(table, errorField, filterBox, addEmployeeBox, removeEmployeeBox);
         root.setCenter(vbox);
     }
-    
+
     private TableView createTableView() {
         TableView table = new TableView();
         table.setEditable(true);
@@ -126,6 +126,7 @@ public class EmployeeView {
         Text filterText = new Text("Filter Employees");
         TextField filterField = new TextField(filter);
         Button filterBtn = new Button("Filter Employees");
+        Button removeFilterBtn = new Button("Clear Filter");
         filterBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -133,7 +134,14 @@ public class EmployeeView {
                 createEmployeeView();
             }
         });
-        filterBox.getChildren().addAll(filterField, filterBtn);
+        removeFilterBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                filter = "";
+                createEmployeeView();
+            }
+        });
+        filterBox.getChildren().addAll(filterField, filterBtn, removeFilterBtn);
         filterBox.setSpacing(10);
         topBox.getChildren().addAll(filterText, filterBox);
         return topBox;
@@ -175,7 +183,7 @@ public class EmployeeView {
     private VBox createRemoveEmployeeBox() {
         VBox topBox = new VBox();
         HBox removeEmployeeBox = new HBox();
-        TextField removeEmployeeTextField = new TextField("Employee's id");
+        TextField removeEmployeeTextField = new TextField("Employee's national id number");
         removeEmployeeBox.setSpacing(10);
         Button removeEmployeeButton = new Button("Remove Employee");
         removeEmployeeBox.getChildren().addAll(removeEmployeeTextField, removeEmployeeButton);
