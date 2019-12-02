@@ -14,10 +14,7 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 [Arkkitehtuuri](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ## Releaset
-[Viikko3](https://github.com/RoniNiklas/ot-harjoitustyo/tree/master/harjoitustyo/Harjoitustyo):
-    -tekstikäyttöliittymä, käyttäjän luonti, käyttäjän poisto, käyttäjän sisäänkirjautuminen, yksikkötestit käyttäjäluokalle, ja käyttäjänhallintaluokalle, jacoco testi.     
-[Viikko4](https://github.com/RoniNiklas/ot-harjoitustyo/tree/master/harjoitustyo/Harjoitustyo):
-    -tekstikäyttöliittymän korvaaminen graafisella, työntekijöiden selaaminen, lisääminen ja tietojen muuttaminen, jacoco-testit, checkstyle testit, arkkitehtuuri, yksikkötestit työntekijäluokalle, 
+[Viikko5](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/Viikko5)
 
 ## Komentorivi
 
