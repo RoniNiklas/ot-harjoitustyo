@@ -11,12 +11,12 @@ Työnantaja
     - Voi lisätä työntekijöitä   **TEHTY**, paitsi että ei tee työntekijälle käyttäjää   
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string), käyttäjätunnus(string), salasana(string)   
     - Voi selailla työntekijöitä   **TEHTY**   
-    - Voi muuttaa työntekijöiden tietoja **TEHTY**, EI TEE DB:SEEN  
+    - Voi muuttaa työntekijöiden tietoja **TEHTY**
     - Voi poistaa työntekijöitä **TEHTY**   
     - Voi lisätä asiakkaita   **TEHTY**  
         - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)   
     - Voi poistaa asiakkaita **TEHTY**  
-    - Voi muuttaa asiakkaiden tietoja **TEHTY**, EI TEE DB:SEEN  
+    - Voi muuttaa asiakkaiden tietoja **TEHTY**
     - Voi lisätä keikkoja   
         - Attribuutteina id (pk), asiakas (fk), työntekijä (fk), keikan kuvaus (string), keikka tehty/eitehty (boolean), keikkaraportti (luodaan keikan jälkeen)(string), keikan alku (date), keikan loppu (date).   
     - Voi liittää asiakkaita keikkoihin   

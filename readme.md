@@ -8,7 +8,7 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 [Arkkitehtuuri](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ## Releaset
-[Viikko5](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/Viikko5)
+[Viikko5-6](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/Viikko5)
 
 ## Komentorivi
 
@@ -20,3 +20,6 @@ Testikattavuusraportti luodaan komennolla
 
 mvn jacoco:report
 
+Checkstyleraportti luodaan komennolla
+
+mvn checkstyle:checkstyle
