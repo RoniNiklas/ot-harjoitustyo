@@ -5,10 +5,7 @@
  */
 package harjoitustyo.domain;
 
-import harjoitustyo.domain.Client;
-import harjoitustyo.domain.Employee;
 import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

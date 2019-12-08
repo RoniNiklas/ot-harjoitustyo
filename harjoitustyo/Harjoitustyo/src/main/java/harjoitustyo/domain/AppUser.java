@@ -63,4 +63,8 @@ public class AppUser extends AbstractPersistable<Long> {
         return username;
     }
 
+    public Long getId() {
+        return id;
+    }
+
 }

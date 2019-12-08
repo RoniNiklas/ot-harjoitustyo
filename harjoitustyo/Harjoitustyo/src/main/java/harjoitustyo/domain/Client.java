@@ -5,7 +5,6 @@
  */
 package harjoitustyo.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CascadeType;
@@ -29,8 +28,7 @@ public class Client extends AbstractPersistable<Long> {
     private String email;
     private String idNumber;
     private String address;
-    
-    @OneToMany(mappedBy="client")
+    @OneToMany(mappedBy = "client")
     private Map<Long, Assignment> assignments = new HashMap<Long, Assignment>();
 
     public Client() {
@@ -49,11 +47,7 @@ public class Client extends AbstractPersistable<Long> {
     public Map<Long, Assignment> getAssignments() {
         return assignments;
     }
-
-    public void setAssignments(Map<Long, Assignment> assignments) {
-        this.assignments = assignments;
-    }
-
+    
     public String getFirstname() {
         return firstname;
     }
@@ -98,10 +92,6 @@ public class Client extends AbstractPersistable<Long> {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
         this.fullname = this.firstname + " " + this.lastname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     public void setEmail(String email) {
