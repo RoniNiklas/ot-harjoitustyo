@@ -7,6 +7,7 @@ package harjoitustyo.dao;
 
 import harjoitustyo.domain.Employee;
 import harjoitustyo.repositories.EmployeeRepository;
+import java.lang.reflect.Method;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.transaction.Transactional;
@@ -62,4 +63,18 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
         employeerepo.delete(employee);
     }
 
+    @Transactional
+    public void update(Long id, String field, String value) {
+        try {
+            Employee employee = employeerepo.findById(id).get();
+            String methodName = "set" + Character.toUpperCase(field.charAt(0)) + field.substring(1, field.length());
+            System.out.println("methodname: " + methodName);
+            Method method = employee.getClass().getMethod(methodName, String.class);
+            System.out.println("method: " + method);
+            method.invoke(employee, value);
+            employeerepo.save(employee);
+        } catch (Exception e) {
+            System.out.println("update doesn't work with field " + field + " and value: " + value + " error: " + e);
+        }
+    }
 }

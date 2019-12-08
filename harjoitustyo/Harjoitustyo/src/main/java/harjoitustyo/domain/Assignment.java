@@ -8,13 +8,27 @@ package harjoitustyo.domain;
 import harjoitustyo.domain.Client;
 import harjoitustyo.domain.Employee;
 import java.time.LocalDateTime;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  *
  * @author Roni
  */
-public class Assignment {
+@Entity
+public class Assignment extends AbstractPersistable<Long> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    @ManyToOne
     private Client client;
+    @ManyToOne
     private Employee employee;
     private LocalDateTime start;
     private LocalDateTime end;

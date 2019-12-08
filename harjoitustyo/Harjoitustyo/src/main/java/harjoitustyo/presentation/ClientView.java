@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package harjoitustyo.presentation;
 
 import harjoitustyo.dao.ClientManagerDao;
@@ -41,6 +36,21 @@ public class ClientView {
         this.errorField = new Text("");
     }
 
+    private void replaceTextAfterSleep(Text text, String input, int duration) {
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(duration);
+                    text.setText(input);
+                } catch (InterruptedException e) {
+                    System.out.println("INTERRUPTED");
+                    text.setText(input);
+                }
+            }
+        };
+        thread.start();
+    }
+
     public void createClientView() {
         clients = clientManager.getObservableClients(filter);
         VBox vbox = new VBox();
@@ -53,80 +63,48 @@ public class ClientView {
         root.setCenter(vbox);
     }
 
+    private TableColumn createEditableColumn(String header, String field, int minWidth) {
+        TableColumn returnCol = new TableColumn(header);
+        returnCol.setMinWidth(minWidth);
+        returnCol.setCellValueFactory(new PropertyValueFactory<Client, String>(field));
+        returnCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        if (field.equals("idNumber")) {
+            returnCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Client, String> t) {
+                    if (!clientManager.contains(t.getNewValue())) {
+                        Long id = t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).getId();
+                        clientManager.update(id, field, t.getNewValue());
+                    } else {
+                        errorField.setText("A client with that ID already exists!");
+                        replaceTextAfterSleep(errorField, "", 5000);
+                        createClientView();
+                    }
+                }
+            });
+        } else {
+            returnCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Client, String> t) {
+                    Long id = t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).getId();
+                    clientManager.update(id, field, t.getNewValue());
+                }
+            });
+        }
+        return returnCol;
+    }
+
     private TableView createTableView() {
         TableView table = new TableView();
         table.setEditable(true);
-        TableColumn firstnameCol = new TableColumn("First Name");
-        TableColumn lastnameCol = new TableColumn("Last Name");
-        TableColumn emailCol = new TableColumn("Email");
-        emailCol.setMinWidth(200);
-        TableColumn numberCol = new TableColumn("Number");
-        numberCol.setMinWidth(100);
-        TableColumn addressCol = new TableColumn("Address");
-        addressCol.setMinWidth(200);
-        TableColumn idNumberCol = new TableColumn("ID Number");
-        idNumberCol.setMinWidth(100);
-        firstnameCol.setCellValueFactory(new PropertyValueFactory<Client, String>("firstname"));
-        firstnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        firstnameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-                ((Client) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setFirstname(t.getNewValue());
-            }
-        });
-        lastnameCol.setCellValueFactory(new PropertyValueFactory<Client, String>("lastname"));
-        lastnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        lastnameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-                ((Client) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setLastname(t.getNewValue());
-            }
-        });
-        emailCol.setCellValueFactory(
-                new PropertyValueFactory<Client, String>("email"));
-        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        emailCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-                ((Client) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setEmail(t.getNewValue());
-            }
-        });
-        numberCol.setCellValueFactory(new PropertyValueFactory<Client, String>("number"));
-        numberCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        numberCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-                ((Client) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setNumber(t.getNewValue());
-            }
-        });
-        addressCol.setCellValueFactory(new PropertyValueFactory<Client, String>("address"));
-        addressCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        addressCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-                ((Client) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setAddress(t.getNewValue());
-            }
-        });
-        idNumberCol.setCellValueFactory(new PropertyValueFactory<Client, String>("idNumber"));
-
-        idNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        idNumberCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Client, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Client, String> t) {
-                if (!clientManager.contains(t.getNewValue())) {
-                    ((Client) t.getTableView().getItems().get(
-                            t.getTablePosition().getRow())).setIdNumber(t.getNewValue());
-                } else {
-                    errorField.setText("An client with that id already exists!");
-                    createClientView();
-                }
-            }
-        });
+        TableColumn firstnameCol = createEditableColumn("First name", "firstname", 100);
+        TableColumn lastnameCol = createEditableColumn("Last name", "lastname", 100);
+        TableColumn emailCol = createEditableColumn("Email", "email", 200);
+        TableColumn numberCol = createEditableColumn("Number", "number", 100);
+        TableColumn addressCol = createEditableColumn("Address", "address", 200);
+        TableColumn idNumberCol = createEditableColumn("ID number", "idNumber", 100);
         table.getColumns().addAll(firstnameCol, lastnameCol, emailCol, numberCol, addressCol, idNumberCol);
         table.setItems(clients);
         return table;

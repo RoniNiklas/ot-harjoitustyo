@@ -18,6 +18,6 @@ public interface EmployeeManagerDao {
     void remove(Employee employee);
     void remove(String idNumber);
     Employee getEmployee(String idNumber);
-    ObservableList<Employee> getObservableEmployees(String filter);
-    
+    ObservableList<Employee> getObservableEmployees(String filter); 
+    void update(Long id, String field, String value);
 }

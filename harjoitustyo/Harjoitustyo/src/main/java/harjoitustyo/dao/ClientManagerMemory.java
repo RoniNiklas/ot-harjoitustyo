@@ -73,4 +73,9 @@ public class ClientManagerMemory implements ClientManagerDao {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public void update(Long id, String field, String newValue) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

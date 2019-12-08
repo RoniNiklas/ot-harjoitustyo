@@ -41,6 +41,21 @@ public class EmployeeView {
         this.errorField = new Text("");
     }
 
+    private void replaceTextAfterSleep(Text text, String input, int duration) {
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(duration);
+                    text.setText(input);
+                } catch (InterruptedException e) {
+                    System.out.println("INTERRUPTED");
+                    text.setText(input);
+                }
+            }
+        };
+        thread.start();
+    }
+
     public void createEmployeeView() {
         employees = employeeManager.getObservableEmployees(filter);
         VBox vbox = new VBox();
@@ -53,79 +68,48 @@ public class EmployeeView {
         root.setCenter(vbox);
     }
 
+    private TableColumn createEditableColumn(String header, String field, int minWidth) {
+        TableColumn returnCol = new TableColumn(header);
+        returnCol.setMinWidth(minWidth);
+        returnCol.setCellValueFactory(new PropertyValueFactory<Employee, String>(field));
+        returnCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        if (field.equals("idNumber")) {
+            returnCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Employee, String> t) {
+                    if (!employeeManager.contains(t.getNewValue())) {
+                        Long id = t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).getId();
+                        employeeManager.update(id, field, t.getNewValue());
+                    } else {
+                        errorField.setText("An employee with that ID already exists!");
+                        replaceTextAfterSleep(errorField, "", 5000);
+                        createEmployeeView();
+                    }
+                }
+            });
+        } else {
+            returnCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Employee, String> t) {
+                    Long id = t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).getId();
+                    employeeManager.update(id, field, t.getNewValue());
+                }
+            });
+        }
+        return returnCol;
+    }
+
     private TableView createTableView() {
         TableView table = new TableView();
         table.setEditable(true);
-        TableColumn firstnameCol = new TableColumn("First Name");
-        TableColumn lastnameCol = new TableColumn("Last Name");
-        TableColumn emailCol = new TableColumn("Email");
-        emailCol.setMinWidth(200);
-        TableColumn numberCol = new TableColumn("Number");
-        numberCol.setMinWidth(100);
-        TableColumn addressCol = new TableColumn("Address");
-        addressCol.setMinWidth(200);
-        TableColumn idNumberCol = new TableColumn("ID Number");
-        idNumberCol.setMinWidth(100);
-        firstnameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstname"));
-        firstnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        firstnameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
-                ((Employee) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setFirstname(t.getNewValue());
-            }
-        });
-        lastnameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastname"));
-        lastnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        lastnameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
-                ((Employee) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setLastname(t.getNewValue());
-            }
-        });
-        emailCol.setCellValueFactory(
-                new PropertyValueFactory<Employee, String>("email"));
-        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        emailCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
-                ((Employee) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setEmail(t.getNewValue());
-            }
-        });
-        numberCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("number"));
-        numberCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        numberCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
-                ((Employee) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setNumber(t.getNewValue());
-            }
-        });
-        addressCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("address"));
-        addressCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        addressCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
-                ((Employee) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())).setAddress(t.getNewValue());
-            }
-        });
-        idNumberCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("idNumber"));
-        idNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        idNumberCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, String> t) {
-                if (!employeeManager.contains(t.getNewValue())) {
-                    ((Employee) t.getTableView().getItems().get(
-                            t.getTablePosition().getRow())).setIdNumber(t.getNewValue());
-                } else {
-                    errorField.setText("An employee with that id already exists!");
-                    createEmployeeView();
-                }
-            }
-        });
+        TableColumn firstnameCol = createEditableColumn("First name", "firstname", 100);
+        TableColumn lastnameCol = createEditableColumn("Last name", "lastname", 100);
+        TableColumn emailCol = createEditableColumn("Email", "email", 200);
+        TableColumn numberCol = createEditableColumn("Number", "number", 100);
+        TableColumn addressCol = createEditableColumn("Address", "address", 200);
+        TableColumn idNumberCol = createEditableColumn("ID number", "idNumber", 100);
         table.getColumns().addAll(firstnameCol, lastnameCol, emailCol, numberCol, addressCol, idNumberCol);
         table.setItems(employees);
         return table;

@@ -24,4 +24,6 @@ public interface ClientManagerDao {
 
     void remove(Client client);
     void remove(String idNumber);
+
+    public void update(Long id, String field, String newValue);
 }

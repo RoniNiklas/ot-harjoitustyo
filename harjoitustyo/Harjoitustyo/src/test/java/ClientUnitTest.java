@@ -26,7 +26,7 @@ public class ClientUnitTest {
 
     @Test
     public void ClientCanBeCreatedFullConstructor() {
-        Client client = new Client("Make", "Makenen", "555-666-777", "email@email.com", new ArrayList<>(), "111", "kotitie 1A");
+        Client client = new Client("Make", "Makenen", "555-666-777", "email@email.com", "111", "kotitie 1A");
         assertNotNull(client);
         assertEquals(client.getFirstname(), "Make");
         assertEquals(client.getLastname(), "Makenen");
@@ -45,7 +45,6 @@ public class ClientUnitTest {
         client.setEmail("email@email.com");
         client.setNumber("555-666-777");
         client.setIdNumber("111");
-        client.setAssignments(new ArrayList<>());
         client.setAddress("kotitie 1A");
         assertEquals(client.getFirstname(), "Make");
         assertEquals(client.getLastname(), "Makenen");

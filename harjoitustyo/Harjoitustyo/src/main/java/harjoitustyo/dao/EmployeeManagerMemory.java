@@ -65,4 +65,8 @@ public class EmployeeManagerMemory implements EmployeeManagerDao {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public void update(Long id, String field, String value) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

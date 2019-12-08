@@ -2,6 +2,7 @@ package harjoitustyo.dao;
 
 import harjoitustyo.domain.Client;
 import harjoitustyo.repositories.ClientRepository;
+import java.lang.reflect.Method;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.transaction.Transactional;
@@ -55,6 +56,22 @@ public class ClientManagerDB implements ClientManagerDao {
     @Transactional
     public void remove(String idNumber) {
         clientrepo.deleteByIdNumber(idNumber);
+    }
+
+    @Override
+    @Transactional
+    public void update(Long id, String field, String value) {
+        try {
+            Client client = clientrepo.findById(id).get();
+            String methodName = "set" + Character.toUpperCase(field.charAt(0)) + field.substring(1, field.length());
+            System.out.println("methodname: " + methodName);
+            Method method = client.getClass().getMethod(methodName, String.class);
+            System.out.println("method: " + method);
+            method.invoke(client, value);
+            clientrepo.save(client);
+        } catch (Exception e) {
+            System.out.println("update doesn't work with field " + field + " and value: " + value + " error: " + e);
+        }
     }
 
 }

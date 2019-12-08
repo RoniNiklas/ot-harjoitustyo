@@ -6,10 +6,14 @@
 package harjoitustyo.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -25,27 +29,28 @@ public class Client extends AbstractPersistable<Long> {
     private String email;
     private String idNumber;
     private String address;
-    private ArrayList<Assignment> assignments;
+    
+    @OneToMany(mappedBy="client")
+    private Map<Long, Assignment> assignments = new HashMap<Long, Assignment>();
 
     public Client() {
     }
 
-    public Client(String firstname, String lastname, String number, String email, ArrayList<Assignment> assignments, String idNumber, String address) {
+    public Client(String firstname, String lastname, String number, String email, String idNumber, String address) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.number = number;
         this.email = email;
-        this.assignments = assignments;
         this.idNumber = idNumber;
         this.fullname = firstname + " " + lastname;
         this.address = address;
     }
 
-    public ArrayList<Assignment> getAssignments() {
+    public Map<Long, Assignment> getAssignments() {
         return assignments;
     }
 
-    public void setAssignments(ArrayList<Assignment> assignments) {
+    public void setAssignments(Map<Long, Assignment> assignments) {
         this.assignments = assignments;
     }
 
@@ -105,5 +110,9 @@ public class Client extends AbstractPersistable<Long> {
 
     public String getEmail() {
         return email;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
