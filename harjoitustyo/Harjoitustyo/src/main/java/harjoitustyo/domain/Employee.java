@@ -5,19 +5,26 @@
  */
 package harjoitustyo.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.transaction.Transactional;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
+@Getter
+@Setter
 public class Employee extends AbstractPersistable<Long> {
 
     @Id
@@ -29,8 +36,8 @@ public class Employee extends AbstractPersistable<Long> {
     private String number;
     private String email;
     private String idNumber;
-    @OneToMany(mappedBy = "employee")
-    private Map<Long, Assignment> assignments = new HashMap<Long, Assignment>();
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Assignment> assignments = new HashSet<Assignment>();
     private String address;
 
     public Employee() {
@@ -47,33 +54,9 @@ public class Employee extends AbstractPersistable<Long> {
         this.address = address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
     public void setLastname(String lastname) {
         this.lastname = lastname;
         this.fullname = this.firstname + " " + this.lastname;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public void setFirstname(String firstname) {
@@ -81,35 +64,25 @@ public class Employee extends AbstractPersistable<Long> {
         this.fullname = this.firstname + " " + this.lastname;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public Map<Long, Assignment> getAssignments() {
-        return assignments;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void addAssignment(Assignment assignment) {
+        this.assignments.add(assignment);
+    }
+
+    public void removeAssignment(Assignment assignment) {
+        this.assignments.remove(assignment);
+    }
+
+    public void clearAssignments() {
+        this.assignments.stream().forEach(assignment -> assignment.getClient().removeAssignment(assignment));
+        this.assignments.clear();
+    }
+
+    @Override
+    public String toString() {
+        return this.fullname + " " + this.idNumber;
     }
 }

@@ -18,10 +18,11 @@ public class AppUserManagerDB implements AppUserManagerDao {
     private AppUserRepository userrepo;
 
     @Override
-    public void add(AppUser user) {
+    public AppUser add(AppUser user) {
         if (!userrepo.existsByUsername(user.getUsername())) {
-            userrepo.save(user);
+            user = userrepo.save(user);
         }
+        return user;
     }
 
     @Override

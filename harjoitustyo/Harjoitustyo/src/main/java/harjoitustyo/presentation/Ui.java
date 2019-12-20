@@ -95,12 +95,13 @@ public class Ui {
 
     private void replaceTextAfterSleep(Text text, String input, int duration) {
         Thread thread = new Thread() {
+            @Override
             public void run() {
                 try {
                     Thread.sleep(duration);
                     text.setText(input);
                 } catch (InterruptedException e) {
-                    System.out.println("INTERRUPTED");
+                    System.out.println("INTERRUPTED: " + e);
                     text.setText(input);
                 }
             }
@@ -156,13 +157,9 @@ public class Ui {
             @Override
             public void handle(ActionEvent e) {
                 root.getChildren().remove(root.getCenter());
-                createAssignmentView();
+                AssignmentView assignmentView = new AssignmentView(root, assignmentManager, clientManager, employeeManager);
+                assignmentView.createAssignmentView();
             }
         });
     }
-
-    private void createAssignmentView() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

@@ -5,6 +5,7 @@
  */
 package harjoitustyo.dao;
 
+import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Employee;
 import harjoitustyo.repositories.EmployeeRepository;
 import java.lang.reflect.Method;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
+@Transactional
 public class EmployeeManagerDB implements EmployeeManagerDao {
 
     @Autowired
@@ -35,14 +37,14 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
     }
 
     @Override
-    public void add(Employee employee) {
+    public Employee add(Employee employee) {
         if (!employeerepo.existsByIdNumber(employee.getIdNumber())) {
-            employeerepo.save(employee);
+            employee = employeerepo.save(employee);
         }
+        return employee;
     }
 
     @Override
-    @Transactional
     public void remove(String idNumber) {
         employeerepo.deleteByIdNumber(idNumber);
     }
@@ -58,19 +60,19 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
     }
 
     @Override
-    @Transactional
     public void remove(Employee employee) {
         employeerepo.delete(employee);
     }
 
-    @Transactional
+    public boolean employeeHasAssignmentsOpen(String idNumber) {
+        return employeerepo.findByIdNumber(idNumber).getAssignments().stream().anyMatch(assignment -> !assignment.getStatus().toUpperCase().equals("COMPLETED"));
+    }
+    @Override
     public void update(Long id, String field, String value) {
         try {
             Employee employee = employeerepo.findById(id).get();
             String methodName = "set" + Character.toUpperCase(field.charAt(0)) + field.substring(1, field.length());
-            System.out.println("methodname: " + methodName);
             Method method = employee.getClass().getMethod(methodName, String.class);
-            System.out.println("method: " + method);
             method.invoke(employee, value);
             employeerepo.save(employee);
         } catch (Exception e) {

@@ -6,6 +6,7 @@
 package harjoitustyo.dao;
 
 import harjoitustyo.dao.ClientManagerDao;
+import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Client;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -44,8 +45,9 @@ public class ClientManagerMemory implements ClientManagerDao {
     }
 
     @Override
-    public void add(Client client) {
+    public Client add(Client client) {
         this.clients.add(client);
+        return client;
     }
 
     @Override

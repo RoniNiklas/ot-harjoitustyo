@@ -5,6 +5,7 @@
  */
 package harjoitustyo.dao;
 
+import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Employee;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -36,8 +37,9 @@ public class EmployeeManagerMemory implements EmployeeManagerDao {
     }
 
     @Override
-    public void add(Employee employee) {
+    public Employee add(Employee employee) {
         this.employees.add(employee);
+        return employee;
     }
 
     @Override
@@ -68,5 +70,4 @@ public class EmployeeManagerMemory implements EmployeeManagerDao {
     public void update(Long id, String field, String value) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

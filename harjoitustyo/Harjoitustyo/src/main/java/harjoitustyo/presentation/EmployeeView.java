@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -37,7 +38,6 @@ public class EmployeeView {
         this.root = root;
         this.employeeManager = employeeManager;
         this.filter = "";
-        employees = employeeManager.getObservableEmployees(this.filter);
         this.errorField = new Text("");
     }
 
@@ -142,17 +142,25 @@ public class EmployeeView {
         return topBox;
     }
 
+    private TextField createTextField(String text, int minWidth) {
+        TextField returnable = new TextField();
+        returnable.setTooltip(new Tooltip(text));
+        returnable.setPromptText(text);
+        returnable.setMinWidth(minWidth);
+        return returnable;
+    }
+
     private VBox createAddEmployeeBox() {
         VBox topBox = new VBox();
         HBox addEmployeeBox = new HBox();
         Text addEmployeeText = new Text("Add Employee");
         addEmployeeBox.setSpacing(10);
-        TextField fnameField = new TextField("First name");
-        TextField lnameField = new TextField("Last name");
-        TextField emailField = new TextField("Email");
-        TextField numberField = new TextField("Phone number");
-        TextField addressField = new TextField("Address");
-        TextField idNumberField = new TextField("National id number");
+        TextField fnameField = createTextField("First Name", 75);
+        TextField lnameField = createTextField("Last name", 75);
+        TextField emailField = createTextField("Email", 100);
+        TextField numberField = createTextField("Phone number", 75);
+        TextField addressField = createTextField("Address", 100);
+        TextField idNumberField = createTextField("National id number", 125);
         Button submitButton = new Button("Add Employee");
         addEmployeeBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, addressField, idNumberField, submitButton);
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -180,7 +188,7 @@ public class EmployeeView {
     private VBox createRemoveEmployeeBox() {
         VBox topBox = new VBox();
         HBox removeEmployeeBox = new HBox();
-        TextField removeEmployeeTextField = new TextField("Employee's national id number");
+        TextField removeEmployeeTextField = createTextField("Employee's national id number", 200);
         removeEmployeeBox.setSpacing(10);
         Button removeEmployeeButton = new Button("Remove Employee");
         removeEmployeeBox.getChildren().addAll(removeEmployeeTextField, removeEmployeeButton);

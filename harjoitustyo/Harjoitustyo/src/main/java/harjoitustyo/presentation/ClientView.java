@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
@@ -32,7 +33,6 @@ public class ClientView {
         this.root = root;
         this.clientManager = clientManager;
         this.filter = "";
-        clients = clientManager.getObservableClients(this.filter);
         this.errorField = new Text("");
     }
 
@@ -137,17 +137,25 @@ public class ClientView {
         return topBox;
     }
 
+    private TextField createTextField(String text, int minWidth) {
+        TextField returnable = new TextField();
+        returnable.setTooltip(new Tooltip(text));
+        returnable.setPromptText(text);
+        returnable.setMinWidth(minWidth);
+        return returnable;
+    }
+
     private VBox createAddClientBox() {
         VBox topBox = new VBox();
         HBox addClientBox = new HBox();
         Text addClientText = new Text("Add Client");
         addClientBox.setSpacing(10);
-        TextField fnameField = new TextField("First name");
-        TextField lnameField = new TextField("Last name");
-        TextField emailField = new TextField("Email");
-        TextField numberField = new TextField("Phone number");
-        TextField idNumberField = new TextField("National id number");
-        TextField addressField = new TextField("Address");
+        TextField fnameField = createTextField("First Name", 75);
+        TextField lnameField = createTextField("Last name", 75);
+        TextField emailField = createTextField("Email", 100);
+        TextField numberField = createTextField("Phone number", 75);
+        TextField addressField = createTextField("Address", 100);
+        TextField idNumberField = createTextField("National id number", 125);
         Button submitButton = new Button("Add Client");
         addClientBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, addressField, idNumberField, submitButton);
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -164,7 +172,7 @@ public class ClientView {
                     clientManager.add(client);
                     createClientView();
                 } else {
-                    errorField.setText("An client with that ID already exists!");
+                    errorField.setText("A client with that ID already exists!");
                 }
             }
         });
@@ -175,7 +183,7 @@ public class ClientView {
     private VBox createRemoveClientBox() {
         VBox topBox = new VBox();
         HBox removeClientBox = new HBox();
-        TextField removeClientTextField = new TextField("Client's national id number");
+        TextField removeClientTextField = createTextField("Client's national id number", 200);
         removeClientBox.setSpacing(10);
         Button removeClientButton = new Button("Remove Client");
         removeClientBox.getChildren().addAll(removeClientTextField, removeClientButton);

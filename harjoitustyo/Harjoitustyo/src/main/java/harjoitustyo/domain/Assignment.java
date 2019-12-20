@@ -6,18 +6,23 @@
 package harjoitustyo.domain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.transaction.Transactional;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-/**
- *
- * @author Roni
- */
+//Roni
 @Entity
+@Getter
+@Setter
+@Transactional
 public class Assignment extends AbstractPersistable<Long> {
 
     @Id
@@ -27,19 +32,44 @@ public class Assignment extends AbstractPersistable<Long> {
     private Client client;
     @ManyToOne
     private Employee employee;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String description;
+    private String address;
     private String report;
-    private boolean completed;
+    private String status;
+    private String contact;
 
-    public Assignment(Client client, Employee employee, LocalDateTime start, LocalDateTime end, String description, String report, boolean completed) {
+    public Assignment(Client client, Employee employee, LocalDateTime start, LocalDateTime end, String description, String address, String contact, String report, String status) {
         this.client = client;
         this.employee = employee;
-        this.start = start;
-        this.end = end;
+        this.startTime = start;
+        this.endTime = end;
+        this.address = address;
+        this.contact = contact;
         this.description = description;
         this.report = report;
-        this.completed = completed;
+        this.status = status;
     }
+
+    public Assignment() {
+    }
+    
+    public String getClientName() {
+        return this.client.getFullname();
+    }
+    public String getEmployeeName() {
+        return this.employee.getFullname();
+    }
+    
+    public String getStartTimeString() {
+        return this.startTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+    }
+    public String getEndTimeString() {
+        return this.endTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+    }
+
+    public boolean contains(String filterUp) {
+        return this.employee.getFullname().toUpperCase().contains(filterUp) || this.client.getFullname().toUpperCase().contains(filterUp) || this.address.toUpperCase().contains(filterUp) || this.description.toUpperCase().contains(filterUp) || this.getStartTimeString().toUpperCase().contains(filterUp) || this.getEndTimeString().toUpperCase().contains(filterUp) || this.status.toUpperCase().contains(filterUp);
+    }    
 }

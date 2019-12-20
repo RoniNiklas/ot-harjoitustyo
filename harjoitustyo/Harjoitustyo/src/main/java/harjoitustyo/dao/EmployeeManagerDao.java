@@ -5,6 +5,7 @@
  */
 package harjoitustyo.dao;
 
+import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Employee;
 import javafx.collections.ObservableList;
 
@@ -14,7 +15,7 @@ import javafx.collections.ObservableList;
  */
 public interface EmployeeManagerDao {
     boolean contains(String idNumber);
-    void add(Employee employee);
+    Employee add(Employee employee);
     void remove(Employee employee);
     void remove(String idNumber);
     Employee getEmployee(String idNumber);

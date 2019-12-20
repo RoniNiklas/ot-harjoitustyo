@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public interface AppUserManagerDao {
     @Override
     String toString();
-    void add(AppUser user);
+    AppUser add(AppUser user);
     void remove(AppUser user);
     public ArrayList<AppUser> getUsers();
     public AppUser getUser(String username);

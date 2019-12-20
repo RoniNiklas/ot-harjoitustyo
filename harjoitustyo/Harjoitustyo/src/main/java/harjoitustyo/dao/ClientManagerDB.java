@@ -1,5 +1,6 @@
 package harjoitustyo.dao;
 
+import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Client;
 import harjoitustyo.repositories.ClientRepository;
 import java.lang.reflect.Method;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
-
+@Transactional
 public class ClientManagerDB implements ClientManagerDao {
 
     @Autowired
@@ -30,14 +31,14 @@ public class ClientManagerDB implements ClientManagerDao {
     }
 
     @Override
-    public void add(Client client) {
+    public Client add(Client client) {
         if (!clientrepo.existsByIdNumber(client.getIdNumber())) {
-            clientrepo.save(client);
+            client = clientrepo.save(client);
         }
+        return client;
     }
 
     @Override
-    @Transactional
     public void remove(Client client) {
         clientrepo.delete(client);
     }
@@ -53,25 +54,26 @@ public class ClientManagerDB implements ClientManagerDao {
     }
 
     @Override
-    @Transactional
     public void remove(String idNumber) {
+        Client client = clientrepo.findByIdNumber(idNumber);
+        client.clearAssignments();
         clientrepo.deleteByIdNumber(idNumber);
+    }
+    
+    public boolean clientHasAssignmentsOpen(String idNumber) {
+        return clientrepo.findByIdNumber(idNumber).getAssignments().stream().anyMatch(assignment -> !assignment.getStatus().toUpperCase().equals("COMPLETED"));
     }
 
     @Override
-    @Transactional
     public void update(Long id, String field, String value) {
         try {
             Client client = clientrepo.findById(id).get();
             String methodName = "set" + Character.toUpperCase(field.charAt(0)) + field.substring(1, field.length());
-            System.out.println("methodname: " + methodName);
             Method method = client.getClass().getMethod(methodName, String.class);
-            System.out.println("method: " + method);
             method.invoke(client, value);
             clientrepo.save(client);
         } catch (Exception e) {
             System.out.println("update doesn't work with field " + field + " and value: " + value + " error: " + e);
         }
     }
-
 }

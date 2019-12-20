@@ -35,8 +35,9 @@ public class AppUserManagerMemory implements AppUserManagerDao {
     }
 
     @Override
-    public void add(AppUser user) {
+    public AppUser add(AppUser user) {
         this.users.add(user);
+        return user;
     }
 
     @Override

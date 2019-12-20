@@ -5,6 +5,7 @@
  */
 package harjoitustyo.dao;
 
+import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Client;
 import javafx.collections.ObservableList;
 
@@ -14,7 +15,7 @@ import javafx.collections.ObservableList;
  */
 public interface ClientManagerDao {
 
-    void add(Client client);
+    Client add(Client client);
 
     boolean contains(String idNumber);
 
@@ -25,5 +26,5 @@ public interface ClientManagerDao {
     void remove(Client client);
     void remove(String idNumber);
 
-    public void update(Long id, String field, String newValue);
+    void update(Long id, String field, String newValue);
 }
