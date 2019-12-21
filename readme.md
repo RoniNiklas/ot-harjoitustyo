@@ -36,8 +36,10 @@ mvn checkstyle:checkstyle
 2. Ota lombok käyttöön koko projektissa
 - poista non-custom setterit ja getterit.
 3. Client + Employee luokat perimään Person luokka, jotta copypaste vähäisempi. Sitten teknisesti voit luoda yhden "personView"-luokan, jota sitten extendaa employee ja client view luokat, joilla ainoana erona on se repository.
+  - ja manager luokat perimään personmanagerluokka?
 4. Testikattavuus
 - 70% rivikattavuus, tee assignment repolle testit.
 5. Sillein, että työntekijälle ei voi liittää päällekkäisiä keikkoja. Tsekkaa vaikka validate metodissa.
 6. Siirrä utilsseihin niitä replaceaftersleep etc. juttuja.
+7. Validoi persoonien luonti esim.
 7. Testaa etätyöpöydällä
