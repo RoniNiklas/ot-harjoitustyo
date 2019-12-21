@@ -38,4 +38,5 @@ mvn checkstyle:checkstyle
 4. Testikattavuus
 - 70% rivikattavuus, tee assignment repolle testit.
 5. Sillein, että työntekijälle ei voi liittää päällekkäisiä keikkoja. Tsekkaa vaikka validate metodissa.
-6. Testaa etätyöpöydällä
+6. Siirrä utilsseihin niitä replaceaftersleep etc. juttuja.
+7. Testaa etätyöpöydällä
