@@ -43,4 +43,5 @@ mvn checkstyle:checkstyle
 5. Sillein, että työntekijälle ei voi liittää päällekkäisiä keikkoja. Tsekkaa vaikka validate metodissa.
 6. Siirrä utilsseihin niitä replaceaftersleep etc. juttuja.
 7. Validoi persoonien luonti esim.
+8. Final release.
 7. Testaa etätyöpöydällä
