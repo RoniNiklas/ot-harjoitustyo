@@ -27,6 +27,7 @@ mvn checkstyle:checkstyle
 ## TODO
 1. Dokumentaatio:
 - vaatimusmäärittelyn korjaaminen
+  - myös tässä dokumentissa
 - käyttöohjeet
 - asennusohjeet
 - javadoc
