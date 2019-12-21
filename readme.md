@@ -23,3 +23,19 @@ mvn jacoco:report
 Checkstyleraportti luodaan komennolla
 
 mvn checkstyle:checkstyle
+
+## TODO
+1. Dokumentaatio:
+- vaatimusmäärittelyn korjaaminen
+- käyttöohjeet
+- asennusohjeet
+- javadoc
+- testausdokumentti (?)
+- päivitä myös viimeistään tässä vaiheessa Labtooliin projektisi nimi vastaamaan projektin aihetta.
+2. Ota lombok käyttöön koko projektissa
+- poista non-custom setterit ja getterit.
+3. Client + Employee luokat perimään Person luokka, jotta copypaste vähäisempi. Sitten teknisesti voit luoda yhden "personView"-luokan, jota sitten extendaa employee ja client view luokat, joilla ainoana erona on se repository.
+4. Testikattavuus
+- 70% rivikattavuus, tee assignment repolle testit.
+5. Sillein, että työntekijälle ei voi liittää päällekkäisiä keikkoja. Tsekkaa vaikka validate metodissa.
+6. Testaa etätyöpöydällä
