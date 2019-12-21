@@ -43,5 +43,8 @@ mvn checkstyle:checkstyle
 5. Sillein, että työntekijälle ei voi liittää päällekkäisiä keikkoja. Tsekkaa vaikka validate metodissa.
 6. Siirrä utilsseihin niitä replaceaftersleep etc. juttuja.
 7. Validoi persoonien luonti esim.
+8. Comboboxit käyttöliittymään?
+9. Muuta sillein, että table oma metodinsa, ja filtteri lataa vain tablen uusiksi.
+10. sillein, että komponenttiolion alakomponentit on kaikki sen attribuutteja, eikä metodien sisäisiä pelkästään.
 8. Final release.
 7. Testaa etätyöpöydällä
