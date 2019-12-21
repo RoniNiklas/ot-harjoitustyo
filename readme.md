@@ -31,6 +31,7 @@ mvn checkstyle:checkstyle
 - asennusohjeet
 - javadoc
 - testausdokumentti (?)
+  - https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md
 - päivitä myös viimeistään tässä vaiheessa Labtooliin projektisi nimi vastaamaan projektin aihetta.
 2. Ota lombok käyttöön koko projektissa
 - poista non-custom setterit ja getterit.
