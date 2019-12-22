@@ -1,6 +1,6 @@
 ## Työnhallintasovellus
 
-Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja.
+Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja. Työnantaja voi luoda työntekijöitä, asiakkaita ja määrittää työntekijöilleen keikkoja.
 
 Huom. Ohjelman source githubissa on Java 8 versio. Erillinen Java 11:lla pyörivä .jar release löytyy alta. Erona vain pom.xml:ssä määritellyt dependencyt, ja sit erillinen NewMain-luokka, joka avaa Main-luokan. Java 11 release toimi kun kokeilin etätyöpöytäyhteydellä.
 
