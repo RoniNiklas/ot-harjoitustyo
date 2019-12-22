@@ -40,8 +40,6 @@ mvn checkstyle:checkstyle
   - ja manager luokat perimään personmanagerluokka?
 4. Testikattavuus
 - 70% rivikattavuus, tee assignment repolle testit.
-5. Sillein, että työntekijälle ei voi liittää päällekkäisiä keikkoja. Tsekkaa vaikka validate metodissa.
-6. Siirrä utilsseihin niitä replaceaftersleep etc. juttuja.
 7. Validoi persoonien luonti esim.
 8. Comboboxit käyttöliittymään?
 9. Muuta sillein, että table oma metodinsa, ja filtteri lataa vain tablen uusiksi.
