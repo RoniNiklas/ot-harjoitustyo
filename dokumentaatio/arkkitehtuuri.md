@@ -1,3 +1,4 @@
+## Sovelluksen rakenne
 Sovelluksen datan muodostavat harjoitustyo.domain pakkauksen luokat User, Employee, Client ja Assignment, jotka kuvaavat käyttäjiä, työntekijöitä, asiakkaita ja työtehtäviä. Luokkien suhteet näkyvät alla olevassa luokkakaaviossa.
 
 [Luokkakaavio](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/LuokkakaavioUusi.jpg)
