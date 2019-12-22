@@ -148,16 +148,13 @@ public class AssignmentView {
         );
         returnCol.setCellFactory(param -> new TableCell<Assignment, Assignment>() {
             private final Button deleteButton = new Button("Delete");
-
             @Override
             protected void updateItem(Assignment assignment, boolean empty) {
                 super.updateItem(assignment, empty);
-
                 if (assignment == null) {
                     setGraphic(null);
                     return;
                 }
-
                 setGraphic(deleteButton);
                 deleteButton.setOnAction(event -> {
                     assignmentManager.remove(assignment);

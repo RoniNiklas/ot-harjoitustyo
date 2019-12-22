@@ -13,7 +13,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -35,9 +34,9 @@ class NewAssignmentView {
     private AssignmentManagerDao assignmentManager;
     private ClientManagerDao clientManager;
     private EmployeeManagerDao employeeManager;
-    private Text errorField;
-    private String clientFilter;
-    private String employeeFilter;
+    private Text errorField = new Text("");
+    private String clientFilter = "";
+    private String employeeFilter = "";
     private final AssignmentView parent;
 
     public NewAssignmentView(AssignmentManagerDao assignmentManager, ClientManagerDao clientManager, EmployeeManagerDao employeeManager, AssignmentView parent) {
@@ -49,9 +48,6 @@ class NewAssignmentView {
         this.assignmentManager = assignmentManager;
         this.clientManager = clientManager;
         this.employeeManager = employeeManager;
-        this.clientFilter = "";
-        this.employeeFilter = "";
-        this.errorField = new Text("");
         this.parent = parent;
     }
 

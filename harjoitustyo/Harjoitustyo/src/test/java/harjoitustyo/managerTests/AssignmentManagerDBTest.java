@@ -444,7 +444,7 @@ public class AssignmentManagerDBTest {
 
     @After
     public void clearManagers() {
-        employeeManager.getObservableEmployees("").stream().forEach(employee -> employeeManager.remove(employee));
-        clientManager.getObservableClients("").stream().forEach(client -> clientManager.remove(client));
+        employeeManager.getObservableEmployees("").stream().forEach(employee -> employeeManager.remove(employee.getIdNumber()));
+        clientManager.getObservableClients("").stream().forEach(client -> clientManager.remove(client.getIdNumber()));
     }
 }

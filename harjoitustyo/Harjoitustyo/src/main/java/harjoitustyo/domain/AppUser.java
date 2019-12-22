@@ -1,22 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package harjoitustyo.domain;
 
-/**
- *
- * @author Roni
- */
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Entity
+@Getter
+@Setter
 public class AppUser extends AbstractPersistable<Long> {
 
     @Id
@@ -38,33 +33,4 @@ public class AppUser extends AbstractPersistable<Long> {
     public String toString() {
         return "User: " + username + " has authorization: " + authorization;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAuthorization() {
-        return authorization;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setAuthorization(String authorization) {
-        this.authorization = authorization;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
 }

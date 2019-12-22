@@ -23,7 +23,6 @@ public interface ClientManagerDao {
 
     ObservableList<Client> getObservableClients(String filter);
 
-    void remove(Client client);
     void remove(String idNumber);
 
     void update(Long id, String field, String newValue);

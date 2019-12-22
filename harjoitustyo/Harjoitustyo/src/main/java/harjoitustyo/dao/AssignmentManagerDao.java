@@ -19,8 +19,6 @@ public interface AssignmentManagerDao {
     public void update(Long id, String field, String newValue);
 
     public void remove(Assignment assignment);
-    
-    public void removeById(Long id);
 
     public Assignment get(Long id);
 

@@ -58,15 +58,7 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
     public boolean contains(String idNumber) {
         return employeerepo.existsByIdNumber(idNumber);
     }
-
-    @Override
-    public void remove(Employee employee) {
-        employeerepo.delete(employee);
-    }
-
-    public boolean employeeHasAssignmentsOpen(String idNumber) {
-        return employeerepo.findByIdNumber(idNumber).getAssignments().stream().anyMatch(assignment -> !assignment.getStatus().toUpperCase().equals("COMPLETED"));
-    }
+    
     @Override
     public void update(Long id, String field, String value) {
         try {

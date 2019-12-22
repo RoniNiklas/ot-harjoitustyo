@@ -1,6 +1,5 @@
 package harjoitustyo.dao;
 
-import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Client;
 import harjoitustyo.repositories.ClientRepository;
 import java.lang.reflect.Method;
@@ -39,11 +38,6 @@ public class ClientManagerDB implements ClientManagerDao {
     }
 
     @Override
-    public void remove(Client client) {
-        clientrepo.delete(client);
-    }
-
-    @Override
     public Client getClient(String idNumber) {
         return clientrepo.findByIdNumber(idNumber);
     }
@@ -55,12 +49,7 @@ public class ClientManagerDB implements ClientManagerDao {
 
     @Override
     public void remove(String idNumber) {
-        Client client = clientrepo.findByIdNumber(idNumber);
         clientrepo.deleteByIdNumber(idNumber);
-    }
-    
-    public boolean clientHasAssignmentsOpen(String idNumber) {
-        return clientrepo.findByIdNumber(idNumber).getAssignments().stream().anyMatch(assignment -> !assignment.getStatus().toUpperCase().equals("COMPLETED"));
     }
 
     @Override

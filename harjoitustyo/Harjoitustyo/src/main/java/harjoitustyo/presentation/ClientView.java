@@ -115,7 +115,7 @@ public class ClientView {
                     createTableBox();
                     createNewClientBox();
                 } else {
-                    errorField.setText("An client with that ID already exists!");
+                    errorField.setText("A client with that ID already exists!");
                 }
             }
         });
@@ -158,7 +158,7 @@ public class ClientView {
                                 t.getTablePosition().getRow()).getId();
                         clientManager.update(id, field, t.getNewValue());
                     } else {
-                        errorField.setText("An client with that ID already exists!");
+                        errorField.setText("A client with that ID already exists!");
                         Utils.replaceTextAfterSleep(errorField, "", 5000);
                         createTableBox();
                     }

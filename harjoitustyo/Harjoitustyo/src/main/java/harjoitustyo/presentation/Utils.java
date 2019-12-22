@@ -17,12 +17,13 @@ public class Utils {
 
     public static void replaceTextAfterSleep(Text text, String input, int duration) {
         Thread thread = new Thread() {
+            @Override
             public void run() {
                 try {
                     Thread.sleep(duration);
                     text.setText(input);
                 } catch (InterruptedException e) {
-                    System.out.println("INTERRUPTED");
+                    System.out.println("INTERRUPTED: " + e);
                     text.setText(input);
                 }
             }

@@ -77,7 +77,7 @@ public class EmployeeManagerDBTest {
 
     @Test
     public void canRemoveGuysWithFullEmployee() {
-        employeemanager.remove(employee);
+        employeemanager.remove(employee.getIdNumber());
         assertEquals(0, employeemanager.getObservableEmployees("").size());
     }
 

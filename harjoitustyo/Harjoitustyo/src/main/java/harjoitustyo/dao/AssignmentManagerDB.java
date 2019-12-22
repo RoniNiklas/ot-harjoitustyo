@@ -72,11 +72,6 @@ public class AssignmentManagerDB implements AssignmentManagerDao {
     }
 
     @Override
-    public void removeById(Long id) {
-        assignmentrepo.deleteById(id);
-    }
-
-    @Override
     public void remove(Assignment assignment) {
         assignmentrepo.delete(assignment);
     }

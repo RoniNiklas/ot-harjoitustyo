@@ -77,7 +77,7 @@ public class ClientManagerDBTest {
 
     @Test
     public void canRemoveGuysWithFullClient() {
-        clientmanager.remove(client);
+        clientmanager.remove(client.getIdNumber());
         assertEquals(0, clientmanager.getObservableClients("").size());
     }
 
