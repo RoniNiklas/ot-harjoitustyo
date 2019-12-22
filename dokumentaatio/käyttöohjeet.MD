@@ -7,6 +7,8 @@ Ohjelma käsittelee database nimistä tiedostoa, joten pyöritä ohjelmaa kansio
 
 ## Aloita käskyllä
 
+Sovellus käynnistetään alla olevall cmdline-komennolla siinä kansiossa, mihin .jar tiedoston latasit.
+
 java -jar Harjoitustyo-0.jar
 
 ## Kirjautuminen  
