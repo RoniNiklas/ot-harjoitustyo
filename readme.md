@@ -26,18 +26,15 @@ Checkstyleraportti luodaan komennolla
 
 mvn checkstyle:checkstyle
 
+.Jar tiedosto luodaan komennolla  
+
+mvn package   
+
+Javadoccia ei voi luoda  
+  
 ## TODO
 1. Dokumentaatio:
-- vaatimusmäärittelyn korjaaminen
-  - myös tässä dokumentissa
-- käyttöohjeet
-- asennusohjeet
 - javadoc
 - testausdokumentti (?)
   - https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md
-- päivitä myös viimeistään tässä vaiheessa Labtooliin projektisi nimi vastaamaan projektin aihetta.
-4. Testikattavuus
-- 70% rivikattavuus, tee assignment repolle testit.
-7. Validoi persoonien luonti esim.
-8. Final release.
 7. Testaa etätyöpöydällä
