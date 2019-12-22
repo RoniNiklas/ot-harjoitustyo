@@ -11,9 +11,7 @@ import harjoitustyo.domain.Client;
 import harjoitustyo.domain.Employee;
 import java.time.LocalDateTime;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.jupiter.api.Assertions;
@@ -29,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest()
 @TestPropertySource(
         locations = "classpath:application-test.properties")
+@Transactional
 public class AssignmentManagerDBTest {
 
     @Autowired
@@ -440,11 +439,5 @@ public class AssignmentManagerDBTest {
                     assignment.getContact(),
                     "", "Assigned");
         });
-    }
-
-    @After
-    public void clearManagers() {
-        employeeManager.getObservableEmployees("").stream().forEach(employee -> employeeManager.remove(employee.getIdNumber()));
-        clientManager.getObservableClients("").stream().forEach(client -> clientManager.remove(client.getIdNumber()));
     }
 }

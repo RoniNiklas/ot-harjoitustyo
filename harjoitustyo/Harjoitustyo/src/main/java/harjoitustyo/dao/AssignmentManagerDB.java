@@ -72,6 +72,7 @@ public class AssignmentManagerDB implements AssignmentManagerDao {
     }
 
     @Override
+    @Transactional
     public void remove(Assignment assignment) {
         assignmentrepo.delete(assignment);
     }
@@ -138,7 +139,7 @@ public class AssignmentManagerDB implements AssignmentManagerDao {
             throw new IllegalArgumentException("Starting time and date can't be after ending time and date.");
         }
         if (employee.getAssignments().stream().anyMatch(
-            assignment -> startDateActual.isBefore(assignment.getEndTime()) && assignment.getStartTime().isBefore(endDateActual)
+                assignment -> startDateActual.isBefore(assignment.getEndTime()) && assignment.getStartTime().isBefore(endDateActual)
         )) {
             throw new IllegalArgumentException("Employee is busy with a different assignment at that time.");
         }

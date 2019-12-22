@@ -11,12 +11,11 @@ import harjoitustyo.repositories.EmployeeRepository;
 import java.lang.reflect.Method;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 @Controller
-@Transactional
 public class EmployeeManagerDB implements EmployeeManagerDao {
 
     @Autowired
@@ -37,6 +36,7 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
     }
 
     @Override
+    @Transactional
     public Employee add(Employee employee) {
         if (!employeerepo.existsByIdNumber(employee.getIdNumber())) {
             employee = employeerepo.save(employee);
@@ -45,6 +45,7 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
     }
 
     @Override
+    @Transactional
     public void remove(String idNumber) {
         employeerepo.deleteByIdNumber(idNumber);
     }
@@ -60,6 +61,7 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
     }
     
     @Override
+    @Transactional
     public void update(Long id, String field, String value) {
         try {
             Employee employee = employeerepo.findById(id).get();
@@ -70,5 +72,9 @@ public class EmployeeManagerDB implements EmployeeManagerDao {
         } catch (Exception e) {
             System.out.println("update doesn't work with field " + field + " and value: " + value + " error: " + e);
         }
+    }
+
+    public void remove(Employee employee) {
+        employeerepo.delete(employee);
     }
 }

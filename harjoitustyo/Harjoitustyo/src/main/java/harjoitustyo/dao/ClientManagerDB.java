@@ -5,12 +5,12 @@ import harjoitustyo.repositories.ClientRepository;
 import java.lang.reflect.Method;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Controller
-@Transactional
 public class ClientManagerDB implements ClientManagerDao {
 
     @Autowired
@@ -30,6 +30,7 @@ public class ClientManagerDB implements ClientManagerDao {
     }
 
     @Override
+    @Transactional
     public Client add(Client client) {
         if (!clientrepo.existsByIdNumber(client.getIdNumber())) {
             client = clientrepo.save(client);
@@ -48,11 +49,13 @@ public class ClientManagerDB implements ClientManagerDao {
     }
 
     @Override
+    @Transactional
     public void remove(String idNumber) {
         clientrepo.deleteByIdNumber(idNumber);
     }
 
     @Override
+    @Transactional
     public void update(Long id, String field, String value) {
         try {
             Client client = clientrepo.findById(id).get();
@@ -63,5 +66,9 @@ public class ClientManagerDB implements ClientManagerDao {
         } catch (Exception e) {
             System.out.println("update doesn't work with field " + field + " and value: " + value + " error: " + e);
         }
+    }
+
+    public void remove(Client client) {
+        clientrepo.delete(client);
     }
 }

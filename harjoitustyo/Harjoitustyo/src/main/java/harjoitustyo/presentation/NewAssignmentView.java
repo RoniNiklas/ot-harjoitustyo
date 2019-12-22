@@ -42,7 +42,7 @@ class NewAssignmentView {
     public NewAssignmentView(AssignmentManagerDao assignmentManager, ClientManagerDao clientManager, EmployeeManagerDao employeeManager, AssignmentView parent) {
         root = new BorderPane();
         root.setPadding(new Insets(10, 10, 5, 5));
-        Scene scene = new Scene(root, 1000, 800);
+        Scene scene = new Scene(root, 1200, 800);
         stage.setScene(scene);
         stage.setTitle("Create a new assignment");
         this.assignmentManager = assignmentManager;
@@ -67,7 +67,7 @@ class NewAssignmentView {
         Button nextButton = new Button("Next");
         vbox.getChildren().addAll(errorField, new Text("1. First"),
                 new Text("Select a client"), createSelectClientBox(),
-                new Text("Or create a new client. (Remember to press create client)."), createAddClientBox(),
+                new Text("Or create a new client. (Remember to press Create Client)."), createAddClientBox(),
                 new Text("2. Once you have selected the client, click next"), nextButton);
         nextButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -172,7 +172,7 @@ class NewAssignmentView {
         vbox.getChildren().addAll(errorField,
                 new Text("3. Then"),
                 new Text("Select an employee"), createSelectEmployeeBox(),
-                new Text("Or create a new employee"), createAddEmployeeBox(),
+                new Text("Or create a new employee. (Remember to press Create Employee)."), createAddEmployeeBox(),
                 new Text("4. Once selected, click next. Or go back to selecting a client."), backAndNext);
         nextButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
