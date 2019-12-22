@@ -1,8 +1,7 @@
 
 ## KÄYTTÖ
 
-Lataa tiedosto: LINKKI TÄHÄN  
-
+Lataa tiedosto: [release](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0)   
 Ohjelma käsittelee database nimistä tiedostoa, joten pyöritä ohjelmaa kansiossa, jossa vastaavaa ei ole. Ohjelma luo tiedoston, jos sitä ei ole olemassa.
 
 ## Aloita käskyllä
