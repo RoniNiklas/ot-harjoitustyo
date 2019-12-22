@@ -2,6 +2,7 @@
 
 Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja.
 
+Huom. Ohjelman source githubissa on Java 8 versio. Erillinen Java 11:lla pyörivä .jar release löytyy alta. Erona vain pom.xml:ssä määritellyt dependencyt.
 
 ## Työn dokumentaatio:     
 [Vaatimusmäärittely](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.MD)    
@@ -13,8 +14,8 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Releaset
 [Viikko5-6](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/Viikko5)   
 
-[Final(Java 8)](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0)
-[Final(Java 11)]
+[Final( Java 8 )](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0)  
+[Final( Java 11 )](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.1)  
 
 ## Komentorivi
 
@@ -34,11 +35,4 @@ mvn checkstyle:checkstyle
 
 mvn package   
 
-Javadoccia ei voi luoda  
-  
-## TODO
-1. Dokumentaatio:
-- javadoc
-- testausdokumentti (?)
-  - https://github.com/mluukkai/OtmTodoApp/blob/master/dokumentaatio/testaus.md
-7. Testaa etätyöpöydällä
+Javadoccia ei voi luoda, sillä ei ole aikaa korjata.
