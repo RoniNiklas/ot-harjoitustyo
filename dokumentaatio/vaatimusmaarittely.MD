@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja, koska satuin näkemään joskus yhden yrityksen pyynnön, että joku jonkun tälläisen heille tuottaisi. Paljon vastaavia on jo olemassa, mutta en nyt keksi muutakaan tekemistä. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja. Työnantaja voi myös merkitä keikkoja tehdyksi.
+Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja, koska satuin näkemään joskus yhden yrityksen pyynnön, että joku jonkun tälläisen heille tuottaisi. Tämä ei kumminkaan ole menossa oikean maailman käyttöön. Paljon vastaavia on jo olemassa, mutta en nyt keksi muutakaan tekemistä. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja. Työnantaja voi myös merkitä keikkoja tehdyksi.
 
 ## Perusversion tarjoama toiminnallisuus
 
