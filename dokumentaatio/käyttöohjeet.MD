@@ -1,14 +1,15 @@
 
 ## ASENNUS
 
-Lataa tiedosto [täältä](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0).  
+Lataa tiedosto joko Java 8:lle [täältä](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0) tai Java 11 [täältä](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.1).  
 Ohjelma käsittelee database.mv.db nimistä tiedostoa, joten pyöritä ohjelmaa kansiossa, jossa vastaavaa ei ole. Ohjelma luo tiedoston itse, joten älä luo vastaavaa käsin.
 
 ## Aloita käskyllä
 
 Sovellus käynnistetään alla olevalla cmdline-komennolla siinä kansiossa, mihin .jar tiedoston latasit.
 
-java -jar Harjoitustyo-0.jar
+Java 8: java -jar Harjoitustyo-0.jar
+Java 11: java -jar Tyonhallintasovellus-0.jar
 
 ## Kirjautuminen  
 
