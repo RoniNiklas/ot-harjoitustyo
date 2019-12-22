@@ -22,9 +22,9 @@ Käyttöliittymätestaus on tehty manuaalisesti.
 
 ## Asennus ja konfigurointi   
 
-Sovellusta on testattu käyttöohjeen kuvaamalla tavalla vain sen luojan Windows 7-ympäristössä, ja etätyöpöydällä.
+Sovelluksen automaattisest testit on pyöritetty Windows 7-ympäristössä sekä Java 8 että Java 11 versioilla, ja testattu Java 11 versiota manuaalisesti etätyöpöydällä.
 
-Sovellusta on testattu sekä silloin kun se luo database-tiedoston itse, ja kun se käyttää jo aiemmin luomaansa database-tiedostoa.
+Sovellusta on testattu sekä silloin kun se luo database-tiedoston itse, että kun se käyttää jo aiemmin luomaansa database-tiedostoa.
 
 ## Toiminnallisuudet  
 Kaikki määrittelydokumentin ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä, joskin esimerkiksi asiakkaiden ja työntekijöiden luonnissa ei ole validointia, joka estäisi tyhjien nimien tai numeroiden käyttämisen arvoina. Ainoastaan se, että kahdella työntekijällä/asiakkaalla ei voi olla samaa HeTua tarkistetaan. Keikkojen luomisessa on vahvempi validointi tyhien osalta, ja päiväyksien osalta, joskin siinäkin voi täyttää hölmöjä arvoja, kuten kirjaimia puhelinnumeroiksi jne. Nämä laskettavissa ohjelman laatuongelmaksi.
