@@ -14,7 +14,7 @@ Integraatiotestit keskittyvät dao-pakkauksen luokkien toiminnan varmistamiseen.
 
 ## Testauskattavuus  
 
-Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus on 79% ja haarautumakattavuus 92%. Kattavuutta vähentää domain-pakkauksen luokkien osalta mm. lombok-kirjaston @Setter annotaation mukana tulevat setterit, joita ohjelma ei käytä mihinkään, ja joita en jaksa testata. En kumminkaan halunnut luopua annotaatioista, sillä ne vähentävät boilerplatea niiden attribuuttien kannalta, joille tarvitaan settereitä. Samaten assignmenttein poistamiseen clienteilta/employeelta liittyvät toiminnot ovat testaamatta, sillä niitä käytetään, kun poistetaan client/employee, jolla on assignmentteja, enkä tiennyt haluanko sallia sellaista tehtävän. Nykyisessä versiossa kumminkin näin voi tehdä, mutta toimintoa ei testata.
+Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus on 79% ja haarautumakattavuus 92%. Kattavuutta vähentää domain-pakkauksen luokkien osalta mm. lombok-kirjaston @Setter annotaation mukana tulevat setterit, joita ohjelma ei käytä mihinkään, ja joita en jaksa testata. En kumminkaan halunnut luopua annotaatioista, sillä ne vähentävät boilerplatea niiden attribuuttien kannalta, joille tarvitaan settereitä. Samaten assignmenttein poistamiseen clienteilta/employeelta liittyvät toiminnot ovat testaamatta, sillä niitä käytetään, kun poistetaan client/employee, jolla on assignmentteja, enkä tiennyt haluanko sallia sellaista tehtävän. Nykyisessä versiossa kumminkin näin voi tehdä, mutta toimintoa ei testata automaattisesti.
 
 ## Järjestelmätestaus
 
