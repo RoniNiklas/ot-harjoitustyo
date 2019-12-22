@@ -37,11 +37,9 @@ public class AppUserManagerDB implements AppUserManagerDao {
 
     @Override
     public boolean checkLogin(String username, String password) {
-        if (userrepo.existsByUsername(username)) {
-            AppUser user = userrepo.findByUsername(username);
-            if (user.getPassword().equals(password)) {
-                return true;
-            }
+        AppUser user = userrepo.findByUsername(username);
+        if (user != null) {
+            return user.getPassword().equals(password);
         }
         return false;
     }
