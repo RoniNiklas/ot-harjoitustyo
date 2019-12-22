@@ -28,10 +28,10 @@ Työnantaja
 
 ## Jatkokehitysideoita
 
-Yksittäisen työntekijän kaikki keikat voisi nähdä erillisessä näkymässä (nyt löytyy filtteröimällä assignments listaa käyttäjän nimellä).
-Keikan tietojen muokkaaminen ja selaaminen erillisessä näkymässä. Nyt assignments näkymässä voi selata ja muokata joitain tietoja, mutta esim raporttia ei voi tehdä tai löytää, ja keikan kuvauksen kohta hyvin pieni oikean maailman tarpeisiin.
-Jokin palvelin systeemi, että ohjelmaa voisi käyttää useammasta paikasta ja useampi henkilö samaan aikaan.
-Työntekijöille pääsy systeemiin (voisivat itse merkitä keikkoja tehdyiksi, ja antaa raportteja niistä).
-Asiakkaalle mahdollisuus antaa kommentteja keikasta.
+Yksittäisen työntekijän kaikki keikat voisi nähdä erillisessä näkymässä (nyt löytyy filtteröimällä assignments listaa käyttäjän nimellä).   
+Keikan tietojen muokkaaminen ja selaaminen erillisessä näkymässä. Nyt assignments näkymässä voi selata ja muokata joitain tietoja, mutta esim raporttia ei voi tehdä tai löytää, ja keikan kuvauksen kohta hyvin pieni oikean maailman tarpeisiin.   
+Jokin palvelin systeemi, että ohjelmaa voisi käyttää useammasta paikasta ja useampi henkilö samaan aikaan.   
+Työntekijöille pääsy systeemiin (voisivat itse merkitä keikkoja tehdyiksi, ja antaa raportteja niistä).    
+Asiakkaalle mahdollisuus antaa kommentteja keikasta.   
 
 
