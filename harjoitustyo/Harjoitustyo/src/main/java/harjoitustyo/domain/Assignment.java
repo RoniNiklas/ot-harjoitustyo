@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.transaction.Transactional;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +21,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Getter
 @Setter
-@Transactional
 public class Assignment extends AbstractPersistable<Long> {
 
     @Id
@@ -70,6 +68,10 @@ public class Assignment extends AbstractPersistable<Long> {
     }
 
     public boolean contains(String filterUp) {
+        filterUp = filterUp.toUpperCase();
         return this.employee.getFullname().toUpperCase().contains(filterUp) || this.client.getFullname().toUpperCase().contains(filterUp) || this.address.toUpperCase().contains(filterUp) || this.description.toUpperCase().contains(filterUp) || this.getStartTimeString().toUpperCase().contains(filterUp) || this.getEndTimeString().toUpperCase().contains(filterUp) || this.status.toUpperCase().contains(filterUp);
     }    
+    public String toString() {
+        return "Client: " + this.getClientName() + " Employee: " + this.getEmployeeName() + " At: " + this.address + " Contact: " + this.contact + " Starts: " + this.getStartTimeString() + " Ends: " + this.getEndTimeString() + " Description: " + this.description + " Status: " + this.status;
+    }
 }

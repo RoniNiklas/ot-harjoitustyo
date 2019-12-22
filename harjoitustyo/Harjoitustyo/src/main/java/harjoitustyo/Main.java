@@ -50,15 +50,10 @@ public class Main extends Application {
         if (userManager.getUsers().size() == 0) {
             AppUser admin = new AppUser("Admin", "Password", "Admin");
             userManager.add(admin);
-            userManager.add(new AppUser("make", "Password", "Employee"));
-            Employee employee = employeeManager.add(new Employee("make", "makenen", "050555666777", "make@makenen.com", "112233-0553", "kotitie 1A"));
-            Client client = new Client("Client", "McClientface", "+35812345678", "client@clientemail.com", "121212-1234", "clientroad 1 b");
-            client = clientManager.add(client);
-            Assignment assignment = new Assignment(client, employee, LocalDateTime.of(1992, 11, 21, 21, 00), LocalDateTime.of(1992, 11, 21, 22, 00), "Avaa putket", "eläintarhankuja 1", client.getNumber(),  "", "Assigned");
+            Employee employee = employeeManager.add(new Employee("Teemu", "Työntekijä", "0501234567", "teemutyontekija@gmail.com", "111133-5555", "Tyontekijankatu 1 a"));
+            Client client = clientManager.add(new Client("Aatu", "Asiakas", "0507654321", "aatu.asiakas@gmail.com", "121212-1234", "Asiakkaantie 7 B 22"));
+            Assignment assignment = new Assignment(client, employee, LocalDateTime.of(2019, 12, 24, 21, 00), LocalDateTime.of(2019, 12, 24, 22, 00), "Vie lahjoja ja laula joululauluja", client.getAddress(), client.getNumber(),  "", "Assigned");
             assignment = assignmentManager.add(assignment);
-            assignmentManager.connect(client, assignment);
-            assignmentManager.connect(employee, assignment);
-            
         }
 
         //käynnistä interface

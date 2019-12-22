@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package harjoitustyo.domain;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.transaction.Transactional;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -37,7 +27,7 @@ public class Client extends AbstractPersistable<Long> {
     private String email;
     private String idNumber;
     private String address;
-    @OneToMany(mappedBy = "client", fetch=FetchType.LAZY, orphanRemoval=true)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Assignment> assignments = new HashSet<Assignment>();
 
     public Client() {
@@ -63,14 +53,10 @@ public class Client extends AbstractPersistable<Long> {
         this.fullname = this.firstname + " " + this.lastname;
     }
 
-    public Long getId() {
-        return id;
-    }
-    
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }
-    
+
     public void removeAssignment(Assignment assignment) {
         this.assignments.remove(assignment);
     }
@@ -79,7 +65,7 @@ public class Client extends AbstractPersistable<Long> {
         this.assignments.stream().forEach(assignment -> assignment.getEmployee().removeAssignment(assignment));
         this.assignments.clear();
     }
-    
+
     @Override
     public String toString() {
         return this.fullname + " " + this.idNumber;

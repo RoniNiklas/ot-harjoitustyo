@@ -26,7 +26,7 @@ public class Ui {
     private ClientManagerDao clientManager;
     private AssignmentManagerDao assignmentManager;
     private Stage primaryStage;
-    private Text errorField;
+    private Text errorField = new Text("");
     private BorderPane root;
     private Scene scene;
     private AppUser user;
@@ -40,8 +40,6 @@ public class Ui {
     }
 
     public void start() {
-        errorField = new Text("");
-
         // Graphics
         // Create the root
         root = new BorderPane();
@@ -51,25 +49,20 @@ public class Ui {
         createLoginView();
 
         // create the scene
-        scene = new Scene(root, 1200, 1000);
+        scene = new Scene(root, 1400, 1000);
         primaryStage.setTitle("Employee Management App");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void removeAllViews() {
-        root.getChildren().clear();
-    }
-
     private void createLoginView() {
-        HBox hbox = new HBox();
-        hbox.setSpacing(10);
+        HBox loginBox = new HBox();
+        loginBox.setSpacing(10);
         Button loginBtn = new Button("Login");
         loginBtn.setDefaultButton(true);
         TextField nameField = new TextField();
         PasswordField pwField = new PasswordField();
-        hbox.getChildren().addAll(nameField, pwField, loginBtn, errorField);
-        root.setTop(hbox);
+        loginBox.getChildren().addAll(nameField, pwField, loginBtn, errorField);
         loginBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -86,27 +79,8 @@ public class Ui {
                 }
             }
         });
-        replaceTextAfterSleep(errorField, "", 5000);
-    }
-
-    private void removeLoginView() {
-        root.getChildren().remove(root.getTop());
-    }
-
-    private void replaceTextAfterSleep(Text text, String input, int duration) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(duration);
-                    text.setText(input);
-                } catch (InterruptedException e) {
-                    System.out.println("INTERRUPTED: " + e);
-                    text.setText(input);
-                }
-            }
-        };
-        thread.start();
+        root.setTop(loginBox);
+        Utils.replaceTextAfterSleep(errorField, "", 5000);
     }
 
     private void createLogoutView() {
@@ -115,7 +89,6 @@ public class Ui {
         hbox.setPadding(new Insets(10, 0, 10, 0));  // top, right, bottom, left
         Button logoutBtn = new Button("Logout");
         hbox.getChildren().addAll(logoutBtn, errorField);
-        root.setTop(hbox);
         logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -125,41 +98,59 @@ public class Ui {
                 createLoginView();
             }
         });
-        replaceTextAfterSleep(errorField, "", 5000);
+        root.setTop(hbox);
+        Utils.replaceTextAfterSleep(errorField, "", 5000);
     }
 
     private void createAdminView() {
-        VBox vbox = new VBox();
-        vbox.setPadding(new Insets(10, 5, 5, 5));  // top, right, bottom, left
-        vbox.setSpacing(10);
+        // Creates the sidebar
+        VBox sidebar = new VBox();
+        sidebar.setPadding(new Insets(10, 5, 5, 5));  // top, right, bottom, left
+        sidebar.setSpacing(10);
         Button openEmployeeView = new Button("Employees");
         Button openClientView = new Button("Client");
         Button openAssignmentView = new Button("Assignments");
-        vbox.getChildren().addAll(openEmployeeView, openClientView, openAssignmentView);
-        root.setLeft(vbox);
+        sidebar.getChildren().addAll(openEmployeeView, openClientView, openAssignmentView);
+        root.setLeft(sidebar);
+        
+        //Creates the views in the center
+        
+        EmployeeView employeeView = new EmployeeView(root, employeeManager);
+        ClientView clientView = new ClientView(root, clientManager);
+        AssignmentView assignmentView = new AssignmentView(root, assignmentManager, clientManager, employeeManager);
+
+        //Sets the buttons in the sidebar to manage the views in the center
+        
         openEmployeeView.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 root.getChildren().remove(root.getCenter());
-                EmployeeView employeeView = new EmployeeView(root, employeeManager);
-                employeeView.createEmployeeView();
+                root.setCenter(employeeView.getAllComponentsBox());
             }
         });
         openClientView.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 root.getChildren().remove(root.getCenter());
-                ClientView clientView = new ClientView(root, clientManager);
-                clientView.createClientView();
+                root.setCenter(clientView.getAllComponentsBox());
             }
         });
         openAssignmentView.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 root.getChildren().remove(root.getCenter());
-                AssignmentView assignmentView = new AssignmentView(root, assignmentManager, clientManager, employeeManager);
-                assignmentView.createAssignmentView();
+                assignmentView.createTableBox();
+                root.setCenter(assignmentView.getAllComponentsBox());
             }
         });
     }
+
+    private void removeLoginView() {
+        root.getChildren().remove(root.getTop());
+    }
+
+    private void removeAllViews() {
+        root.getChildren().clear();
+    }
+
 }

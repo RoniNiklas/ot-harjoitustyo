@@ -106,7 +106,7 @@ public class EmployeeManagerDBTest {
     }
 
     @Test
-    public void aUselessTestForTestikattavuus() {
+    public void cantUpdateFieldsThatDontExist() {
         employee = employeemanager.getEmployee("112233-1234");
         Long id = employee.getId();
         employeemanager.update(id, "notafield", "nonvalue");

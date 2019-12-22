@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import javafx.scene.control.ComboBox;
 
 class NewAssignmentView {
 
@@ -72,7 +72,7 @@ class NewAssignmentView {
         vbox.getChildren().addAll(errorField, new Text("1. First"),
                 new Text("Select a client"), createSelectClientBox(),
                 new Text("Or create a new client. (Remember to press create client)."), createAddClientBox(),
-                new Text("2. Once selected, click next"), nextButton);
+                new Text("2. Once you have selected the client, click next"), nextButton);
         nextButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -80,42 +80,8 @@ class NewAssignmentView {
                     openSelectEmployeeView();
                 } else {
                     errorField.setText("You have to choose a client for the assignment.");
-                    reusables.replaceTextAfterSleep(errorField, "", 5000);
+                    Utils.replaceTextAfterSleep(errorField, "", 5000);
                 }
-            }
-        });
-        root.setCenter(vbox);
-    }
-
-    public void openSelectEmployeeView() {
-        removeAllViews();
-        VBox vbox = new VBox();
-        vbox.setSpacing(10);
-        HBox backAndNext = new HBox();
-        Button nextButton = new Button("Next");
-        Button backButton = new Button("Back");
-        backAndNext.getChildren().addAll(backButton, nextButton);
-        backAndNext.setSpacing(50);
-        vbox.getChildren().addAll(errorField,
-                new Text("3. Then"),
-                new Text("Select an employee"), createSelectEmployeeBox(),
-                new Text("Or create a new employee"), createAddEmployeeBox(),
-                new Text("4. Once selected, click next. Or go back to selecting a client."), backAndNext);
-        nextButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                if (employee != null) {
-                    openAssignmentDetailsView();
-                } else {
-                    errorField.setText("You have to select an employee for the assignment.");
-                    reusables.replaceTextAfterSleep(errorField, "", 5000);
-                }
-            }
-        });
-        backButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                openSelectClientView();
             }
         });
         root.setCenter(vbox);
@@ -125,7 +91,7 @@ class NewAssignmentView {
         errorField.setText("");
         ObservableList clients = clientManager.getObservableClients(clientFilter);
         HBox selectClientBox = new HBox();
-        ChoiceBox clientChooser = new ChoiceBox();
+        ComboBox clientChooser = new ComboBox();
         clientChooser.getItems().add(null);
         clientChooser.getItems().addAll(clients);
         clientChooser.setValue(client);
@@ -168,12 +134,12 @@ class NewAssignmentView {
     private HBox createAddClientBox() {
         HBox addClientBox = new HBox();
         addClientBox.setSpacing(10);
-        TextField fnameField = reusables.createTextField("First Name", 75);
-        TextField lnameField = reusables.createTextField("Last name", 75);
-        TextField emailField = reusables.createTextField("Email", 100);
-        TextField numberField = reusables.createTextField("Phone number", 75);
-        TextField addressField = reusables.createTextField("Address", 100);
-        TextField idNumberField = reusables.createTextField("National id number", 125);
+        TextField fnameField = Utils.createTextField("First Name", 75);
+        TextField lnameField = Utils.createTextField("Last name", 75);
+        TextField emailField = Utils.createTextField("Email", 100);
+        TextField numberField = Utils.createTextField("Phone number", 75);
+        TextField addressField = Utils.createTextField("Address", 100);
+        TextField idNumberField = Utils.createTextField("National id number", 125);
         Button submitButton = new Button("Create Client");
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -190,7 +156,7 @@ class NewAssignmentView {
                     openSelectClientView();
                 } else {
                     errorField.setText("A client with that ID already exists!");
-                    reusables.replaceTextAfterSleep(errorField, "", 5000);
+                    Utils.replaceTextAfterSleep(errorField, "", 5000);
                 }
             }
         });
@@ -198,11 +164,45 @@ class NewAssignmentView {
         return addClientBox;
     }
 
+    public void openSelectEmployeeView() {
+        removeAllViews();
+        VBox vbox = new VBox();
+        vbox.setSpacing(10);
+        HBox backAndNext = new HBox();
+        Button nextButton = new Button("Next");
+        Button backButton = new Button("Back");
+        backAndNext.getChildren().addAll(backButton, nextButton);
+        backAndNext.setSpacing(50);
+        vbox.getChildren().addAll(errorField,
+                new Text("3. Then"),
+                new Text("Select an employee"), createSelectEmployeeBox(),
+                new Text("Or create a new employee"), createAddEmployeeBox(),
+                new Text("4. Once selected, click next. Or go back to selecting a client."), backAndNext);
+        nextButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if (employee != null) {
+                    openAssignmentDetailsView();
+                } else {
+                    errorField.setText("You have to select an employee for the assignment.");
+                    Utils.replaceTextAfterSleep(errorField, "", 5000);
+                }
+            }
+        });
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                openSelectClientView();
+            }
+        });
+        root.setCenter(vbox);
+    }
+
     private HBox createSelectEmployeeBox() {
         errorField.setText("");
         ObservableList employees = employeeManager.getObservableEmployees(employeeFilter);
         HBox selectEmployeeBox = new HBox();
-        ChoiceBox employeeChooser = new ChoiceBox();
+        ComboBox employeeChooser = new ComboBox();
         employeeChooser.getItems().add(null);
         employeeChooser.getItems().addAll(employees);
         employeeChooser.setValue(employee);
@@ -246,12 +246,12 @@ class NewAssignmentView {
         HBox addEmployeeBox = new HBox();
         Text addEmployeeText = new Text("Add Employee");
         addEmployeeBox.setSpacing(10);
-        TextField fnameField = reusables.createTextField("First Name", 75);
-        TextField lnameField = reusables.createTextField("Last name", 75);
-        TextField emailField = reusables.createTextField("Email", 100);
-        TextField numberField = reusables.createTextField("Phone number", 75);
-        TextField addressField = reusables.createTextField("Address", 100);
-        TextField idNumberField = reusables.createTextField("National id number", 125);
+        TextField fnameField = Utils.createTextField("First Name", 75);
+        TextField lnameField = Utils.createTextField("Last name", 75);
+        TextField emailField = Utils.createTextField("Email", 100);
+        TextField numberField = Utils.createTextField("Phone number", 75);
+        TextField addressField = Utils.createTextField("Address", 100);
+        TextField idNumberField = Utils.createTextField("National id number", 125);
         Button submitButton = new Button("Add Employee");
         addEmployeeBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, addressField, idNumberField, submitButton);
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -269,7 +269,7 @@ class NewAssignmentView {
                     openSelectEmployeeView();
                 } else {
                     errorField.setText("An employee with that ID already exists!");
-                    reusables.replaceTextAfterSleep(errorField, "", 5000);
+                    Utils.replaceTextAfterSleep(errorField, "", 5000);
                 }
             }
         });
@@ -298,13 +298,13 @@ class NewAssignmentView {
 
         //Address
         HBox addressBox = new HBox();
-        TextField addressField = reusables.createTextField("Address for the assignment", 100);
+        TextField addressField = Utils.createTextField("Address for the assignment", 100);
         addressField.setText(client.getAddress());
         addressBox.getChildren().addAll(new Text("Address: "), addressField);
 
         //Contact info
         HBox contactBox = new HBox();
-        TextField contactField = reusables.createTextField("Client's phone number", 100);
+        TextField contactField = Utils.createTextField("Client's phone number", 100);
         contactField.setText(client.getNumber());
         contactBox.getChildren().addAll(new Text("Client's phone number: "), contactField);
 
@@ -312,18 +312,20 @@ class NewAssignmentView {
         VBox startDateAndTimeVBox = new VBox();
         HBox startDateAndTimeHBox = new HBox();
         DatePicker startDatePicker = new DatePicker();
-        TextField startHour = reusables.createTextField("Hour", 10);
-        TextField startMinutes = reusables.createTextField("Minutes", 10);
+        TextField startHour = Utils.createTextField("Hour", 10);
+        TextField startMinutes = Utils.createTextField("Minutes", 10);
         startDateAndTimeHBox.getChildren().addAll(startDatePicker, startHour, startMinutes);
         startDateAndTimeVBox.getChildren().addAll(new Text("Start date and time"), startDateAndTimeHBox);
+        
         //EndDate
         VBox endDateAndTimeVBox = new VBox();
         HBox endDateAndTimeHBox = new HBox();
         DatePicker endDatePicker = new DatePicker();
-        TextField endHour = reusables.createTextField("Hour", 10);
-        TextField endMinutes = reusables.createTextField("Minutes", 10);
+        TextField endHour = Utils.createTextField("Hour", 10);
+        TextField endMinutes = Utils.createTextField("Minutes", 10);
         endDateAndTimeHBox.getChildren().addAll(endDatePicker, endHour, endMinutes);
         endDateAndTimeVBox.getChildren().addAll(new Text("End date and time"), endDateAndTimeHBox);
+        
         // Backandnext
         HBox backAndNext = new HBox();
         Button nextButton = new Button("Submit");
@@ -366,10 +368,8 @@ class NewAssignmentView {
                                 contactField.getText(),
                                 "", "Assigned");
                         assignment = assignmentManager.add(assignment);
-                        client.addAssignment(assignment);
-                        employee.addAssignment(assignment);
                         stage.close();
-                        parent.createAssignmentView();
+                        parent.createTableBox();
                     }
                 } catch (Exception exception) {
                     errorField.setText(exception.getMessage());

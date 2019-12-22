@@ -16,56 +16,136 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import lombok.Getter;
 
-/**
- *
- * @author Roni
- */
+//Roni
 public class EmployeeView {
 
     private BorderPane root;
     private EmployeeManagerDao employeeManager;
     private ObservableList employees;
-    private String filter;
-    private Text errorField;
+    private String filter = "";
+    private Text errorField = new Text("");
+    @Getter
+    private VBox allComponentsBox = new VBox();
+    private VBox tableBox = new VBox();
+    private VBox filterBox = new VBox();
+    private VBox newEmployeeBox = new VBox();
+    private VBox removeEmployeeBox = new VBox();
 
     public EmployeeView(BorderPane root, EmployeeManagerDao employeeManager) {
         this.root = root;
         this.employeeManager = employeeManager;
-        this.filter = "";
-        this.errorField = new Text("");
+        allComponentsBox.setSpacing(10);
+        employees = employeeManager.getObservableEmployees(filter);
+        createTableBox();
+        createFilterBox();
+        createNewEmployeeBox();
+        createRemoveEmployeeBox();
+        allComponentsBox.getChildren().clear();
+        allComponentsBox.getChildren().addAll(tableBox, errorField, filterBox, newEmployeeBox, removeEmployeeBox);
     }
 
-    private void replaceTextAfterSleep(Text text, String input, int duration) {
-        Thread thread = new Thread() {
-            public void run() {
-                try {
-                    Thread.sleep(duration);
-                    text.setText(input);
-                } catch (InterruptedException e) {
-                    System.out.println("INTERRUPTED");
-                    text.setText(input);
+    public void createTableBox() {
+        employees = employeeManager.getObservableEmployees(filter);
+        tableBox.getChildren().clear();
+        TableView table = new TableView();
+        table.setEditable(true);
+        TableColumn firstnameCol = createEditableColumn("First name", "firstname", 100);
+        TableColumn lastnameCol = createEditableColumn("Last name", "lastname", 100);
+        TableColumn emailCol = createEditableColumn("Email", "email", 200);
+        TableColumn numberCol = createEditableColumn("Number", "number", 100);
+        TableColumn addressCol = createEditableColumn("Address", "address", 200);
+        TableColumn idNumberCol = createEditableColumn("ID number", "idNumber", 100);
+        table.getColumns().addAll(firstnameCol, lastnameCol, emailCol, numberCol, addressCol, idNumberCol);
+        table.setItems(employees);
+        tableBox.getChildren().add(table);
+    }
+
+    private void createFilterBox() {
+        filterBox.getChildren().clear();
+        HBox filterHBox = new HBox();
+        TextField filterField = new TextField(filter);
+        Button filterBtn = new Button("Filter Employees");
+        Button removeFilterBtn = new Button("Clear Filter");
+        filterBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                filter = filterField.getText();
+                createTableBox();
+            }
+        });
+        removeFilterBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                filter = "";
+                createTableBox();
+                createFilterBox();
+            }
+        });
+        filterHBox.getChildren().addAll(filterField, filterBtn, removeFilterBtn);
+        filterHBox.setSpacing(10);
+        filterBox.getChildren().addAll(new Text("Filter Employees"), filterHBox);
+    }
+
+    private void createNewEmployeeBox() {
+        newEmployeeBox.getChildren().clear();
+        HBox newEmployeeHBox = new HBox();
+        newEmployeeHBox.setSpacing(10);
+        TextField fnameField = Utils.createTextField("First Name", 75);
+        TextField lnameField = Utils.createTextField("Last name", 75);
+        TextField emailField = Utils.createTextField("Email", 100);
+        TextField numberField = Utils.createTextField("Phone number", 75);
+        TextField addressField = Utils.createTextField("Address", 100);
+        TextField idNumberField = Utils.createTextField("National id number", 125);
+        Button submitButton = new Button("Add Employee");
+        newEmployeeHBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, addressField, idNumberField, submitButton);
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                if (!employeeManager.contains(idNumberField.getText())) {
+                    Employee employee = new Employee();
+                    employee.setEmail(emailField.getText());
+                    employee.setFirstname(fnameField.getText());
+                    employee.setLastname(lnameField.getText());
+                    employee.setIdNumber(idNumberField.getText());
+                    employee.setNumber(numberField.getText());
+                    employee.setAddress(addressField.getText());
+                    employeeManager.add(employee);
+                    createTableBox();
+                    createNewEmployeeBox();
+                } else {
+                    errorField.setText("An employee with that ID already exists!");
                 }
             }
-        };
-        thread.start();
+        });
+        newEmployeeBox.getChildren().addAll(new Text("Add a new employee"), newEmployeeHBox);
     }
 
-    public void createEmployeeView() {
-        employees = employeeManager.getObservableEmployees(filter);
-        VBox vbox = new VBox();
-        vbox.setSpacing(10);
-        TableView table = createTableView();
-        VBox filterBox = createFilterBox();
-        VBox addEmployeeBox = createAddEmployeeBox();
-        VBox removeEmployeeBox = createRemoveEmployeeBox();
-        vbox.getChildren().addAll(table, errorField, filterBox, addEmployeeBox, removeEmployeeBox);
-        root.setCenter(vbox);
+    private void createRemoveEmployeeBox() {
+        removeEmployeeBox.getChildren().clear();
+        HBox removeEmployeeHBox = new HBox();
+        TextField removeEmployeeTextField = Utils.createTextField("Employee's national id number", 200);
+        removeEmployeeHBox.setSpacing(10);
+        Button removeEmployeeButton = new Button("Remove Employee");
+        removeEmployeeHBox.getChildren().addAll(removeEmployeeTextField, removeEmployeeButton);
+        removeEmployeeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                String idNumber = removeEmployeeTextField.getText();
+                if (employeeManager.contains(idNumber)) {
+                    employeeManager.remove(idNumber);
+                } else {
+                    errorField.setText("No employee with that ID exists.");
+                }
+                createTableBox();
+            }
+        });
+        removeEmployeeBox.getChildren().addAll(new Text("Remove Employee"), removeEmployeeHBox);
     }
 
     private TableColumn createEditableColumn(String header, String field, int minWidth) {
@@ -83,8 +163,8 @@ public class EmployeeView {
                         employeeManager.update(id, field, t.getNewValue());
                     } else {
                         errorField.setText("An employee with that ID already exists!");
-                        replaceTextAfterSleep(errorField, "", 5000);
-                        createEmployeeView();
+                        Utils.replaceTextAfterSleep(errorField, "", 5000);
+                        createTableBox();
                     }
                 }
             });
@@ -99,113 +179,5 @@ public class EmployeeView {
             });
         }
         return returnCol;
-    }
-
-    private TableView createTableView() {
-        TableView table = new TableView();
-        table.setEditable(true);
-        TableColumn firstnameCol = createEditableColumn("First name", "firstname", 100);
-        TableColumn lastnameCol = createEditableColumn("Last name", "lastname", 100);
-        TableColumn emailCol = createEditableColumn("Email", "email", 200);
-        TableColumn numberCol = createEditableColumn("Number", "number", 100);
-        TableColumn addressCol = createEditableColumn("Address", "address", 200);
-        TableColumn idNumberCol = createEditableColumn("ID number", "idNumber", 100);
-        table.getColumns().addAll(firstnameCol, lastnameCol, emailCol, numberCol, addressCol, idNumberCol);
-        table.setItems(employees);
-        return table;
-    }
-
-    private VBox createFilterBox() {
-        VBox topBox = new VBox();
-        HBox filterBox = new HBox();
-        Text filterText = new Text("Filter Employees");
-        TextField filterField = new TextField(filter);
-        Button filterBtn = new Button("Filter Employees");
-        Button removeFilterBtn = new Button("Clear Filter");
-        filterBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                filter = filterField.getText();
-                createEmployeeView();
-            }
-        });
-        removeFilterBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                filter = "";
-                createEmployeeView();
-            }
-        });
-        filterBox.getChildren().addAll(filterField, filterBtn, removeFilterBtn);
-        filterBox.setSpacing(10);
-        topBox.getChildren().addAll(filterText, filterBox);
-        return topBox;
-    }
-
-    private TextField createTextField(String text, int minWidth) {
-        TextField returnable = new TextField();
-        returnable.setTooltip(new Tooltip(text));
-        returnable.setPromptText(text);
-        returnable.setMinWidth(minWidth);
-        return returnable;
-    }
-
-    private VBox createAddEmployeeBox() {
-        VBox topBox = new VBox();
-        HBox addEmployeeBox = new HBox();
-        Text addEmployeeText = new Text("Add Employee");
-        addEmployeeBox.setSpacing(10);
-        TextField fnameField = createTextField("First Name", 75);
-        TextField lnameField = createTextField("Last name", 75);
-        TextField emailField = createTextField("Email", 100);
-        TextField numberField = createTextField("Phone number", 75);
-        TextField addressField = createTextField("Address", 100);
-        TextField idNumberField = createTextField("National id number", 125);
-        Button submitButton = new Button("Add Employee");
-        addEmployeeBox.getChildren().addAll(fnameField, lnameField, emailField, numberField, addressField, idNumberField, submitButton);
-        submitButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                if (!employeeManager.contains(idNumberField.getText())) {
-                    Employee employee = new Employee();
-                    employee.setEmail(emailField.getText());
-                    employee.setFirstname(fnameField.getText());
-                    employee.setLastname(lnameField.getText());
-                    employee.setIdNumber(idNumberField.getText());
-                    employee.setNumber(numberField.getText());
-                    employee.setAddress(addressField.getText());
-                    employeeManager.add(employee);
-                    createEmployeeView();
-                } else {
-                    errorField.setText("An employee with that ID already exists!");
-                }
-            }
-        });
-        topBox.getChildren().addAll(addEmployeeText, addEmployeeBox);
-        return topBox;
-    }
-
-    private VBox createRemoveEmployeeBox() {
-        VBox topBox = new VBox();
-        HBox removeEmployeeBox = new HBox();
-        TextField removeEmployeeTextField = createTextField("Employee's national id number", 200);
-        removeEmployeeBox.setSpacing(10);
-        Button removeEmployeeButton = new Button("Remove Employee");
-        removeEmployeeBox.getChildren().addAll(removeEmployeeTextField, removeEmployeeButton);
-        removeEmployeeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                String idNumber = removeEmployeeTextField.getText();
-                if (employeeManager.contains(idNumber)) {
-                    System.out.println("Contains!");
-                    employeeManager.remove(idNumber);
-                } else {
-                    errorField.setText("No employee with that ID exists.");
-                }
-                createEmployeeView();
-            }
-        });
-        topBox.getChildren().addAll(new Text("Remove Employee"), removeEmployeeBox);
-        return topBox;
     }
 }

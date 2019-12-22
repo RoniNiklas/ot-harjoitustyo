@@ -6,21 +6,11 @@ package harjoitustyo.unitTests;
  * and open the template in the editor.
  */
 
-import harjoitustyo.domain.Assignment;
 import harjoitustyo.domain.Employee;
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Roni
- */
+//Roni
 public class EmployeeUnitTest {
 
     public EmployeeUnitTest() {

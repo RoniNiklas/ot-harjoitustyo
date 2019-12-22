@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.text.Text;
 
-public class reusables {
+public class Utils {
 
     public static TextField createTextField(String text, int minWidth) {
         TextField returnable = new TextField();

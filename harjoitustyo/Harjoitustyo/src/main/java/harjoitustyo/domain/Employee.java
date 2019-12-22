@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package harjoitustyo.domain;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.transaction.Transactional;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -36,7 +26,7 @@ public class Employee extends AbstractPersistable<Long> {
     private String number;
     private String email;
     private String idNumber;
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Assignment> assignments = new HashSet<Assignment>();
     private String address;
 
@@ -62,10 +52,6 @@ public class Employee extends AbstractPersistable<Long> {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
         this.fullname = this.firstname + " " + this.lastname;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void addAssignment(Assignment assignment) {

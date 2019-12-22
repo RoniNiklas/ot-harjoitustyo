@@ -106,7 +106,7 @@ public class ClientManagerDBTest {
     }
 
     @Test
-    public void aUselessTestForTestikattavuus() {
+    public void cantUpdateFieldsThatDontExist() {
         client = clientmanager.getClient("112233-1234");
         Long id = client.getId();
         clientmanager.update(id, "notafield", "nonvalue");

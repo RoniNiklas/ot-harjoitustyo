@@ -56,7 +56,6 @@ public class ClientManagerDB implements ClientManagerDao {
     @Override
     public void remove(String idNumber) {
         Client client = clientrepo.findByIdNumber(idNumber);
-        client.clearAssignments();
         clientrepo.deleteByIdNumber(idNumber);
     }
     
