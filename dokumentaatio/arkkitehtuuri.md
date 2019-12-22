@@ -8,6 +8,6 @@ Sovelluslogiikasta vastaa harjoitustyo.dao pakkauksen interfacet appUserManagerD
 
 Tietokannasta vastaa harjoitustyo.repository luokan oliot AppUserRepository, ClientRepository, EmployeeRepository ja AssignmentRepository.
 
-Alla esimerkki ohjelman end-to-end toiminnasta. Kuvassa on sekvenssikaavio adminin kirjautumiselle sovellukseen.  
+Alla esimerkki ohjelman end-to-end toiminnasta. Kuvassa on sekvenssikaavio adminin kirjautumiselle sovellukseen sisään ja sovelluksesta ulos.
 
 [Sekvenssikaavio adminin sisään kirjautumiselle](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/sekvenssikaavioUusi.png)
