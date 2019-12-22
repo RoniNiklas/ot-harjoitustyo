@@ -1,6 +1,6 @@
 ## Työnhallintasovellus
 
-Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja sekä jakaa työntekijöilleen keikkoja. Työntekijät voivat katsoa missä heillä on keikkoja ja milloin. Työntekijät voivat myös merkitä keikkoa tehdyiksi ja antaa keikkaraportteja. 
+Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja.
 
 ## Työn dokumentaatio:     
 [Työaikakirjanpito](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.MD)      
