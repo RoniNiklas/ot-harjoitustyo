@@ -2,6 +2,7 @@
 
 Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan työntekijöidensä työkeikkoja. Työnantaja voi luoda työntekijöitä, asiakkaita ja keikkoja.
 
+
 ## Työn dokumentaatio:     
 [Vaatimusmäärittely](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.MD)    
 [Arkkitehtuuri](https://github.com/RoniNiklas/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)   
@@ -11,7 +12,9 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 
 ## Releaset
 [Viikko5-6](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/Viikko5)   
-[Final](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0)
+
+[Final(Java 8)](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0)
+[Final(Java 11)]
 
 ## Komentorivi
 
