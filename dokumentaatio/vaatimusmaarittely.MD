@@ -7,24 +7,24 @@ Ideana yksinkertainen työnhallintasovellus, jolla yritys pystyy hallinnoimaan t
 ## Perusversion tarjoama toiminnallisuus
 
 Työnantaja    
-    - Voi kirjautua sisään ja ulos. **TEHTY**  
-    - Voi lisätä työntekijöitä   **TEHTY**, paitsi että ei tee työntekijälle käyttäjää   
-        - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string), käyttäjätunnus(string), salasana(string)   
-    - Voi selailla työntekijöitä   **TEHTY**   
-    - Voi muuttaa työntekijöiden tietoja **TEHTY**
-    - Voi poistaa työntekijöitä **TEHTY**   
-        - Työntekijän poisto poistaa myös asiakkaaseen liittyvät keikat.
-    - Voi lisätä asiakkaita   **TEHTY**  
-        - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)   
-    - Voi poistaa asiakkaita **TEHTY** 
-        - Asiakkaan poisto poistaa myös asiakkaaseen liittyvät keikat.
-    - Voi muuttaa asiakkaiden tietoja **TEHTY**
-    - Voi lisätä keikkoja   **TEHTY**
-        - Attribuutteina id (pk), asiakas (fk), työntekijä (fk), keikan kuvaus (string), keikka tehty/eitehty (boolean), keikkaraportti (luodaan keikan jälkeen)(string), keikan alku (date), keikan loppu (date).   
-    - Voi liittää asiakkaita keikkoihin   **TEHTY**
-    - Voi liittää työntekijöitä keikkoihin   **TEHTY**
-        - Työntekijälle ei voi liittää päällekkäisiä keikkoja.    **TEHTY** 
-    - Voi poistaa keikkoja **TEHTY**
+    - Voi kirjautua sisään ja ulos. **TEHTY**     
+    - Voi lisätä työntekijöitä   **TEHTY**, paitsi että ei tee työntekijälle käyttäjää      
+        - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string), käyttäjätunnus(string), salasana(string)     
+    - Voi selailla työntekijöitä   **TEHTY**      
+    - Voi muuttaa työntekijöiden tietoja **TEHTY**   
+    - Voi poistaa työntekijöitä **TEHTY**     
+        - Työntekijän poisto poistaa myös asiakkaaseen liittyvät keikat.    
+    - Voi lisätä asiakkaita   **TEHTY**     
+        - Attribuutteina id (pk), nimi (string), osoite (string), puh (string), sahkoposti (string)     
+    - Voi poistaa asiakkaita **TEHTY**    
+        - Asiakkaan poisto poistaa myös asiakkaaseen liittyvät keikat.   
+    - Voi muuttaa asiakkaiden tietoja **TEHTY**  
+    - Voi lisätä keikkoja   **TEHTY**  
+        - Attribuutteina id (pk), asiakas (fk), työntekijä (fk), keikan kuvaus (string), keikka tehty/eitehty (boolean), keikkaraportti (luodaan keikan jälkeen)(string), keikan alku (date), keikan loppu (date).     
+    - Voi liittää asiakkaita keikkoihin   **TEHTY**  
+    - Voi liittää työntekijöitä keikkoihin   **TEHTY**  
+        - Työntekijälle ei voi liittää päällekkäisiä keikkoja.    **TEHTY**   
+    - Voi poistaa keikkoja **TEHTY**  
 
 ## Jatkokehitysideoita
 
