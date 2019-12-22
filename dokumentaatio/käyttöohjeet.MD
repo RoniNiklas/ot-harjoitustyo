@@ -1,5 +1,5 @@
 
-## KÄYTTÖ
+## ASENNUS
 
 Lataa tiedosto [täältä](https://github.com/RoniNiklas/ot-harjoitustyo/releases/tag/1.0.0).  
 Ohjelma käsittelee database.mv.db nimistä tiedostoa, joten pyöritä ohjelmaa kansiossa, jossa vastaavaa ei ole. Ohjelma luo tiedoston itse, joten älä luo vastaavaa käsin.
