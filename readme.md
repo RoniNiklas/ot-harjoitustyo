@@ -34,5 +34,3 @@ mvn checkstyle:checkstyle
 .Jar tiedosto luodaan komennolla  
 
 mvn package   
-
-Javadoccia ei voi luoda, sillä ei ole aikaa korjata.
